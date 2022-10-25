@@ -7,7 +7,11 @@
 
 import Foundation
 
-class NetworkRequest {
+protocol NetworkRequestProtocol {
+    func requestData(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
+}
+
+class NetworkRequest: NetworkRequestProtocol {
     
     static let shared = NetworkRequest()
     

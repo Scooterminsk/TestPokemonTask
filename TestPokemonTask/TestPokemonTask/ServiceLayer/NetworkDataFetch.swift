@@ -7,13 +7,20 @@
 
 import Foundation
 
-class NetworkDataFetch {
+protocol NetworkDataFetchProtocol {
+    func fetchPokemons(response: @escaping (PokemonModel?, Error?) -> Void)
+    func fetchPokemonDescription(urlString: String, response: @escaping (PokemonDescriptionModel?, Error?) -> Void)
+}
+
+class NetworkDataFetch: NetworkDataFetchProtocol {
     
     static let shared = NetworkDataFetch()
     
     private init() {}
     
-    func fetchPokemons(urlString: String, response: @escaping (PokemonModel?, Error?) -> Void) {
+    func fetchPokemons(response: @escaping (PokemonModel?, Error?) -> Void) {
+        
+        let urlString = "https://pokeapi.co/api/v2/pokemon"
         
         NetworkRequest.shared.requestData(urlString: urlString) { result in
             switch result {
