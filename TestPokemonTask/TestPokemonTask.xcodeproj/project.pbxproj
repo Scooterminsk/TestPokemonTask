@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4A6D1B42908189100552568 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1B32908189100552568 /* UIStackView + Extension.swift */; };
 		E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF23962908033100AE96AC /* AppDelegate.swift */; };
 		E4DF23992908033100AE96AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF23982908033100AE96AC /* SceneDelegate.swift */; };
 		E4DF239B2908033100AE96AC /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF239A2908033100AE96AC /* PokemonListViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4A6D1B32908189100552568 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		E4DF23932908033100AE96AC /* TestPokemonTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPokemonTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DF23962908033100AE96AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4DF23982908033100AE96AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		E4DF23D1290804E600AE96AC /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				E4A6D1B32908189100552568 /* UIStackView + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				E4DF23A12908033100AE96AC /* TestPokemonTask.xcdatamodeld in Sources */,
 				E4DF239B2908033100AE96AC /* PokemonListViewController.swift in Sources */,
 				E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */,
+				E4A6D1B42908189100552568 /* UIStackView + Extension.swift in Sources */,
 				E4DF23992908033100AE96AC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
