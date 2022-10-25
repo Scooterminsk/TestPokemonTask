@@ -15,6 +15,8 @@ class PokemonListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    var presenter: PokemonListPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +42,27 @@ class PokemonListViewController: UIViewController {
 
 extension PokemonListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return presenter.pokemons?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonNameCell", for: indexPath)
-        cell.textLabel?.text = "Test"
+        var content = cell.defaultContentConfiguration()
+        let pokemon = presenter.pokemons?[indexPath.row]
+        content.text = pokemon?.name
+        cell.contentConfiguration = content
         return cell
+    }
+}
+
+//MARK: - PokemonListViewProtocol
+extension PokemonListViewController: PokemonListViewProtocol {
+    func success() {
+        pokemonNamesTableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
     }
 }
 

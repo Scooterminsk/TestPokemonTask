@@ -106,6 +106,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E4A6D1C62908733900552568 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E4DF238A2908033100AE96AC = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DF23C92908044300AE96AC /* Application */,
+				E4A6D1C62908733900552568 /* Helpers */,
 				E4DF23CA2908045700AE96AC /* PokemonListModule */,
 				E4DF23CE290804BA00AE96AC /* DetailModule */,
 				E4DF23CF290804CE00AE96AC /* ServiceLayer */,
