@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pokemons: Codable {
+struct PokemonModel: Codable {
     let results: [Pokemon]
 }
 

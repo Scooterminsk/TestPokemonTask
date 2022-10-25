@@ -17,7 +17,7 @@ struct TypeElement: Codable {
     let type: Species
 }
 
-struct PokemonDescription: Codable {
+struct PokemonDescriptionModel: Codable {
     let height: Int
     let name: String
     let types: [TypeElement]
