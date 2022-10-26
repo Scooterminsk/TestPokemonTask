@@ -11,9 +11,10 @@ class DetailViewController: UIViewController {
 
     private let pokemonImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .clear
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -85,6 +86,11 @@ class DetailViewController: UIViewController {
 
 //MARK: - DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
+    func setPokemonImage(imageData: Data?) {
+        guard let data = imageData else { return }
+        pokemonImageView.image = UIImage(data: data)
+    }
+    
     func pokemonDescriptionSuccess() {
         nameLabel.text = presenter.pokemon?.name.capitalized
         if let height = presenter.pokemonDescription?.height,

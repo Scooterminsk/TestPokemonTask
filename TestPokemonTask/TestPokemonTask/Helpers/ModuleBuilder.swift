@@ -23,8 +23,9 @@ class ModuleBuilder: Builder {
     
     func createDetailModule(pokemon: Pokemon?) -> UIViewController {
         let view = DetailViewController()
-        let networkService = NetworkDataFetch.shared
-        let presenter = DetailPresenter(view: view, networkService: networkService, pokemon: pokemon)
+        let networkRequestService = NetworkRequest.shared
+        let networkFetchService = NetworkDataFetch.shared
+        let presenter = DetailPresenter(view: view, networkRequestService: networkRequestService, networkFetchService: networkFetchService, pokemon: pokemon)
         view.presenter = presenter
         return view
     }
