@@ -40,7 +40,8 @@ class PokemonListViewController: UIViewController {
 
 }
 
-extension PokemonListViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - UITableViewDataSource
+extension PokemonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.pokemons?.count ?? 0
     }
@@ -52,6 +53,16 @@ extension PokemonListViewController: UITableViewDataSource, UITableViewDelegate 
         content.text = pokemon?.name
         cell.contentConfiguration = content
         return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension PokemonListViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pokemon = presenter.pokemons?[indexPath.row]
+        let detailViewController = ModuleBuilder().createDetailModule(pokemon: pokemon)
+        navigationController?.pushViewController(detailViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

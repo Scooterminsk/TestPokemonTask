@@ -73,6 +73,7 @@ class DetailViewController: UIViewController {
     }
 }
 
+//MARK: - DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
     func pokemonDescriptionSuccess() {
         if let height = presenter.pokemonDescription?.height,
