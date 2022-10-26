@@ -78,8 +78,9 @@ extension DetailViewController: DetailViewProtocol {
     func pokemonDescriptionSuccess() {
         if let height = presenter.pokemonDescription?.height,
            let weight = presenter.pokemonDescription?.weight {
-            heightLabel.text = String(height)
-            weightLabel.text = String(weight)
+            // Because default height is in decimetres, default weight is in hectograms according to API documentation
+            heightLabel.text = "Height: " + String(height * 10) + " cm"
+            weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
         }
     }
     
