@@ -13,20 +13,28 @@ protocol PokemonListViewProtocol: AnyObject {
 }
 
 protocol PokemonListPresenterProtocol: AnyObject {
-    init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol)
+    init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol, router: RouterProtocol)
     func getPokemons()
     var pokemons: [Pokemon]? { get set }
+    func tapOnPokemonsName(pokemon: Pokemon?)
 }
 
 class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
     let networkService: NetworkDataFetchProtocol!
+    var router: RouterProtocol?
     var pokemons: [Pokemon]?
     
-    required init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol) {
+    required init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
         getPokemons()
+    }
+    
+    func tapOnPokemonsName(pokemon: Pokemon?) {
+        guard let pokemon = pokemon else { return }
+        router?.showDetails(pokemon: pokemon)
     }
     
     func getPokemons() {

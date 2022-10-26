@@ -29,14 +29,14 @@ class Router: RouterProtocol {
     
     func initialViewController() {
         if let navigationController = navigationController {
-            guard let pokemonListViewController = assemblyBuilder?.createPokemonListModule() else { return }
+            guard let pokemonListViewController = assemblyBuilder?.createPokemonListModule(router: self) else { return }
             navigationController.viewControllers = [pokemonListViewController]
         }
     }
 
     func showDetails(pokemon: Pokemon) {
         if let navigationController = navigationController {
-            guard let detailViewController = assemblyBuilder?.createDetailModule(pokemon: pokemon ) else { return }
+            guard let detailViewController = assemblyBuilder?.createDetailModule(pokemon: pokemon, router: self ) else { return }
             navigationController.pushViewController(detailViewController, animated: true)
         }
     }

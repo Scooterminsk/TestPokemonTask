@@ -16,11 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let moduleBuilder = AssemblyModuleBuilder()
-        let mainVC = moduleBuilder.createPokemonListModule()
-        let detailVC = DetailViewController()
-        let navigationVC = UINavigationController(rootViewController: mainVC)
-        window?.rootViewController = navigationVC
-        window?.makeKeyAndVisible()
+        let mainVC = moduleBuilder.createPokemonListModule(router: )
+//        let detailVC = DetailViewController()
+//        let navigationVC = UINavigationController(rootViewController: mainVC)
+//        window?.rootViewController = navigationVC
+//        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

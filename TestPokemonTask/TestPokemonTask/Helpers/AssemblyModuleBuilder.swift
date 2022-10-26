@@ -8,24 +8,28 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    func createPokemonListModule() -> UIViewController
-    func createDetailModule(pokemon: Pokemon?) -> UIViewController
+    func createPokemonListModule(router: RouterProtocol) -> UIViewController
+    func createDetailModule(pokemon: Pokemon?, router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
-    func createPokemonListModule() -> UIViewController {
+    func createPokemonListModule(router: RouterProtocol) -> UIViewController {
         let view = PokemonListViewController()
         let networkService = NetworkDataFetch.shared
-        let presenter = PokemonListPresenter(view: view, networkService: networkService)
+        let presenter = PokemonListPresenter(view: view, networkService: networkService, router: router)
         view.presenter = presenter
         return view
     }
     
-    func createDetailModule(pokemon: Pokemon?) -> UIViewController {
+    func createDetailModule(pokemon: Pokemon?, router: RouterProtocol) -> UIViewController {
         let view = DetailViewController()
         let networkRequestService = NetworkRequest.shared
         let networkFetchService = NetworkDataFetch.shared
-        let presenter = DetailPresenter(view: view, networkRequestService: networkRequestService, networkFetchService: networkFetchService, pokemon: pokemon)
+        let presenter = DetailPresenter(view: view,
+                                        networkRequestService: networkRequestService,
+                                        networkFetchService: networkFetchService,
+                                        router: router,
+                                        pokemon: pokemon)
         view.presenter = presenter
         return view
     }

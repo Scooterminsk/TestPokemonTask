@@ -14,23 +14,35 @@ protocol DetailViewProtocol: AnyObject {
 }
 
 protocol DetailViewPresenterProtocol: AnyObject {
-    init(view: DetailViewProtocol, networkRequestService: NetworkRequestProtocol, networkFetchService: NetworkDataFetchProtocol, pokemon: Pokemon?)
+    init(view: DetailViewProtocol,
+         networkRequestService: NetworkRequestProtocol,
+         networkFetchService: NetworkDataFetchProtocol,
+         router: RouterProtocol,
+         pokemon: Pokemon?)
+    
     func getPokemonDescription()
     var pokemon: Pokemon? { get set }
     var pokemonDescription: PokemonDescriptionModel? { get set }
+    func tapBack()
 }
 
 class DetailPresenter: DetailViewPresenterProtocol {
     weak var view: DetailViewProtocol?
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!
+    var router: RouterProtocol?
     var pokemon: Pokemon?
     var pokemonDescription: PokemonDescriptionModel?
     
-    required init(view: DetailViewProtocol, networkRequestService: NetworkRequestProtocol, networkFetchService: NetworkDataFetchProtocol, pokemon: Pokemon?) {
+    required init(view: DetailViewProtocol,
+                  networkRequestService: NetworkRequestProtocol,
+                  networkFetchService: NetworkDataFetchProtocol,
+                  router: RouterProtocol,
+                  pokemon: Pokemon?) {
         self.view = view
         self.networkRequestService = networkRequestService
         self.networkFetchService = networkFetchService
+        self.router = router
         self.pokemon = pokemon
     }
     
@@ -61,5 +73,9 @@ class DetailPresenter: DetailViewPresenterProtocol {
                 print("Error occured while trying to get a pokemon image", error.localizedDescription)
             }
         }
+    }
+    
+    func tapBack() {
+        router?.popToRoot()
     }
 }
