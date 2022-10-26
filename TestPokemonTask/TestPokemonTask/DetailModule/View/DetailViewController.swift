@@ -47,8 +47,12 @@ class DetailViewController: UIViewController {
     
     private var parametersStackView = UIStackView()
     
+    var presenter: DetailViewPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.getPokemonDescription()
 
         setupViews()
         setConstraints()
@@ -66,6 +70,20 @@ class DetailViewController: UIViewController {
                                           distribution: .fillProportionally)
         view.addSubview(parametersStackView)
         
+    }
+}
+
+extension DetailViewController: DetailViewProtocol {
+    func pokemonDescriptionSuccess() {
+        if let height = presenter.pokemonDescription?.height,
+           let weight = presenter.pokemonDescription?.weight {
+            heightLabel.text = String(height)
+            weightLabel.text = String(weight)
+        }
+    }
+    
+    func pokemonDescriptionFailure(error: Error) {
+        print(error.localizedDescription)
     }
 }
 

@@ -15,6 +15,8 @@ protocol DetailViewProtocol: AnyObject {
 protocol DetailViewPresenterProtocol: AnyObject {
     init(view: DetailViewProtocol, networkService: NetworkDataFetchProtocol, pokemon: Pokemon?)
     func getPokemonDescription()
+    var pokemon: Pokemon? { get set }
+    var pokemonDescription: PokemonDescriptionModel? { get set }
 }
 
 class DetailPresenter: DetailViewPresenterProtocol {
