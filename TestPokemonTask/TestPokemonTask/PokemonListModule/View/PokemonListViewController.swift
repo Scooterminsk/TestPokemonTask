@@ -28,6 +28,7 @@ class PokemonListViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
+        title = "Pokemons"
         
         view.addSubview(pokemonNamesTableView)
     }
@@ -57,7 +58,7 @@ extension PokemonListViewController: UITableViewDataSource {
 }
 
 //MARK: - UITableViewDelegate
-extension PokemonListViewController: UITableViewDelegate{
+extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pokemon = presenter.pokemons?[indexPath.row]
         let detailViewController = ModuleBuilder().createDetailModule(pokemon: pokemon)
