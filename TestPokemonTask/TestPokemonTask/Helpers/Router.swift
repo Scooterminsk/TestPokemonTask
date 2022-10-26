@@ -1,0 +1,49 @@
+//
+//  Router.swift
+//  TestPokemonTask
+//
+//  Created by Zenya Kirilov on 26.10.22.
+//
+
+import UIKit
+
+protocol RouterMain {
+    var navigationController: UINavigationController? { get set }
+    var assemblyBuilder: AssemblyBuilderProtocol? { get set }
+}
+
+protocol RouterProtocol: RouterMain {
+    func initialViewController()
+    func showDetails(pokemon: Pokemon)
+    func popToRoot()
+}
+
+class Router: RouterProtocol {
+    var navigationController: UINavigationController?
+    var assemblyBuilder: AssemblyBuilderProtocol?
+    
+    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
+        self.navigationController = navigationController
+        self.assemblyBuilder = assemblyBuilder
+    }
+    
+    func initialViewController() {
+        if let navigationController = navigationController {
+            guard let pokemonListViewController = assemblyBuilder?.createPokemonListModule() else { return }
+            navigationController.viewControllers = [pokemonListViewController]
+        }
+    }
+
+    func showDetails(pokemon: Pokemon) {
+        if let navigationController = navigationController {
+            guard let detailViewController = assemblyBuilder?.createDetailModule(pokemon: pokemon ) else { return }
+            navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+
+    func popToRoot() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+}

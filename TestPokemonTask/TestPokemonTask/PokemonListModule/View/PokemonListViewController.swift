@@ -61,7 +61,7 @@ extension PokemonListViewController: UITableViewDataSource {
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pokemon = presenter.pokemons?[indexPath.row]
-        let detailViewController = ModuleBuilder().createDetailModule(pokemon: pokemon)
+        let detailViewController = AssemblyModuleBuilder().createDetailModule(pokemon: pokemon)
         navigationController?.pushViewController(detailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

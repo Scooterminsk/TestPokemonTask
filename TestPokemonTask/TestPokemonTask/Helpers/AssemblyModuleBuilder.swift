@@ -1,5 +1,5 @@
 //
-//  ModuleBuilder.swift
+//  AssemblyModuleBuilder.swift
 //  TestPokemonTask
 //
 //  Created by Zenya Kirilov on 25.10.22.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol Builder {
+protocol AssemblyBuilderProtocol {
     func createPokemonListModule() -> UIViewController
     func createDetailModule(pokemon: Pokemon?) -> UIViewController
 }
 
-class ModuleBuilder: Builder {
+class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     func createPokemonListModule() -> UIViewController {
         let view = PokemonListViewController()
         let networkService = NetworkDataFetch.shared
