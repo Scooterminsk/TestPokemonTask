@@ -18,6 +18,15 @@ class DetailViewController: UIViewController {
         return imageView
     }()
     
+    private let nameLabel: UILabel = {
+       let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.text = "Name"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let typesLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
@@ -62,7 +71,8 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(pokemonImageView)
-        parametersStackView = UIStackView(arrangedSubviews: [typesLabel,
+        parametersStackView = UIStackView(arrangedSubviews: [nameLabel,
+                                                            typesLabel,
                                                             weightLabel,
                                                             heightLabel],
                                           axis: .vertical,
@@ -76,6 +86,7 @@ class DetailViewController: UIViewController {
 //MARK: - DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
     func pokemonDescriptionSuccess() {
+        nameLabel.text = presenter.pokemon?.name.capitalized
         if let height = presenter.pokemonDescription?.height,
            let weight = presenter.pokemonDescription?.weight {
             // Because default height is in decimetres, default weight is in hectograms according to API documentation
@@ -94,7 +105,7 @@ extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             pokemonImageView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
             pokemonImageView.heightAnchor.constraint(equalToConstant: view.frame.width - 20),
             
