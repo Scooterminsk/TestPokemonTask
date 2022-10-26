@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E49112A229092DA000628FAB /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A129092DA000628FAB /* DetailPresenter.swift */; };
 		E49112A429098F0700628FAB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A329098F0700628FAB /* Router.swift */; };
+		E49112A62909C73600628FAB /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A52909C73600628FAB /* NetworkMonitor.swift */; };
 		E4A6D1B42908189100552568 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1B32908189100552568 /* UIStackView + Extension.swift */; };
 		E4A6D1B8290819CC00552568 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1B7290819CC00552568 /* DetailViewController.swift */; };
 		E4A6D1BC29085D4D00552568 /* AllPokemonsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1BB29085D4D00552568 /* AllPokemonsModel.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		E49112A129092DA000628FAB /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		E49112A329098F0700628FAB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E49112A52909C73600628FAB /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E4A6D1B32908189100552568 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		E4A6D1B7290819CC00552568 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E4A6D1BB29085D4D00552568 /* AllPokemonsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPokemonsModel.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				E4A6D1C0290860B300552568 /* NetworkRequest.swift */,
 				E4A6D1C2290861BA00552568 /* NetworkDataFetch.swift */,
+				E49112A52909C73600628FAB /* NetworkMonitor.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */,
 				E4A6D1B8290819CC00552568 /* DetailViewController.swift in Sources */,
 				E4A6D1B42908189100552568 /* UIStackView + Extension.swift in Sources */,
+				E49112A62909C73600628FAB /* NetworkMonitor.swift in Sources */,
 				E4A6D1BF29085E5100552568 /* PokemonDescriptionModel.swift in Sources */,
 				E4A6D1C1290860B300552568 /* NetworkRequest.swift in Sources */,
 				E4DF23992908033100AE96AC /* SceneDelegate.swift in Sources */,
