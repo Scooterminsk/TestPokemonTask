@@ -28,6 +28,7 @@ class PokemonListViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
+        title = "Pokemons"
         
         view.addSubview(pokemonNamesTableView)
     }
@@ -40,7 +41,8 @@ class PokemonListViewController: UIViewController {
 
 }
 
-extension PokemonListViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - UITableViewDataSource
+extension PokemonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.pokemons?.count ?? 0
     }
@@ -49,9 +51,18 @@ extension PokemonListViewController: UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonNameCell", for: indexPath)
         var content = cell.defaultContentConfiguration()
         let pokemon = presenter.pokemons?[indexPath.row]
-        content.text = pokemon?.name
+        content.text = pokemon?.name.capitalized
         cell.contentConfiguration = content
         return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension PokemonListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pokemon = presenter.pokemons?[indexPath.row]
+        presenter.tapOnPokemonsName(pokemon: pokemon)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

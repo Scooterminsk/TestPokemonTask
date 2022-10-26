@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct Species: Codable {
+struct PokemonDescriptionModel: Codable {
+    let height: Int
     let name: String
-    let url: String
+    let types: [TypeElement]
+    let weight: Int
+    let sprites: Sprites
 }
 
 struct TypeElement: Codable {
@@ -17,16 +20,19 @@ struct TypeElement: Codable {
     let type: Species
 }
 
-struct PokemonDescriptionModel: Codable {
-    let height: Int
+struct Species: Codable {
     let name: String
-    let types: [TypeElement]
-    let weight: Int
+    let url: String
+}
 
-    enum CodingKeys: String, CodingKey {
-        case height
-        case name
-        case types
-        case weight
-    }
+struct Sprites: Codable {
+    let other: Other?
+}
+
+struct Other: Codable {
+    let home: Home
+}
+
+struct Home: Codable {
+    let front_default: String
 }

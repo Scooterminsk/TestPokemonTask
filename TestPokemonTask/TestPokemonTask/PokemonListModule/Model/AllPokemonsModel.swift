@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonModel: Decodable, Equatable {
+struct PokemonModel: Codable, Equatable {
     let results: [Pokemon]
 }
 

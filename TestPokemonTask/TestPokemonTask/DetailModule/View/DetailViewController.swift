@@ -11,11 +11,21 @@ class DetailViewController: UIViewController {
 
     private let pokemonImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .clear
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+    
+    private let nameLabel: UILabel = {
+       let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.text = "Name"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let typesLabel: UILabel = {
@@ -47,8 +57,12 @@ class DetailViewController: UIViewController {
     
     private var parametersStackView = UIStackView()
     
+    var presenter: DetailViewPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.getPokemonDescription()
 
         setupViews()
         setConstraints()
@@ -58,14 +72,38 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(pokemonImageView)
-        parametersStackView = UIStackView(arrangedSubviews: [typesLabel,
-                                                            weightLabel,
-                                                            heightLabel],
+        parametersStackView = UIStackView(arrangedSubviews: [nameLabel,
+                                                             typesLabel,
+                                                             weightLabel,
+                                                             heightLabel],
                                           axis: .vertical,
                                           spacing: 10,
                                           distribution: .fillProportionally)
         view.addSubview(parametersStackView)
-        
+    }
+}
+
+//MARK: - DetailViewProtocol
+extension DetailViewController: DetailViewProtocol {
+    func setPokemonImage(imageData: Data?) {
+        guard let data = imageData else { return }
+        pokemonImageView.image = UIImage(data: data)
+    }
+    
+    func pokemonDescriptionSuccess() {
+        nameLabel.text = presenter.pokemon?.name.capitalized
+        if let height = presenter.pokemonDescription?.height,
+           let weight = presenter.pokemonDescription?.weight,
+           let types = presenter.pokemonDescription?.types {
+            // Because default height is in decimetres, default weight is in hectograms, according to API documentation
+            heightLabel.text = "Height: " + String(height * 10) + " cm"
+            weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
+            typesLabel.text = (types.count > 1 ? "Types: ": "Type: ") + types.map{$0.type.name.capitalized}.joined(separator: ", ")
+        }
+    }
+    
+    func pokemonDescriptionFailure(error: Error) {
+        print(error.localizedDescription)
     }
 }
 
@@ -74,7 +112,7 @@ extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             pokemonImageView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
             pokemonImageView.heightAnchor.constraint(equalToConstant: view.frame.width - 20),
             
