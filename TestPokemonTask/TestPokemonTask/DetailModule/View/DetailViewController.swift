@@ -55,16 +55,6 @@ class DetailViewController: UIViewController {
          return label
     }()
     
-    private lazy var backButton: UIButton = {
-       let button = UIButton()
-        button.backgroundColor = .purple
-        button.tintColor = .white
-        button.setTitle("Back", for: .normal)
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private var parametersStackView = UIStackView()
     
     var presenter: DetailViewPresenterProtocol!
@@ -83,17 +73,13 @@ class DetailViewController: UIViewController {
         
         view.addSubview(pokemonImageView)
         parametersStackView = UIStackView(arrangedSubviews: [nameLabel,
-                                                            typesLabel,
-                                                            weightLabel,
-                                                            heightLabel],
+                                                             typesLabel,
+                                                             weightLabel,
+                                                             heightLabel],
                                           axis: .vertical,
                                           spacing: 10,
                                           distribution: .fillProportionally)
         view.addSubview(parametersStackView)
-    }
-    
-    @objc func backButtonTapped() {
-        presenter.tapBack()
     }
 }
 
@@ -132,12 +118,7 @@ extension DetailViewController {
             
             parametersStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 20),
             parametersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            parametersStackView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
-            
-            backButton.topAnchor.constraint(equalTo: parametersStackView.bottomAnchor, constant: 20),
-            backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            backButton.widthAnchor.constraint(equalToConstant: 100),
-            backButton.heightAnchor.constraint(equalToConstant: 50)
+            parametersStackView.widthAnchor.constraint(equalToConstant: view.frame.width - 20)
         ])
     }
 }

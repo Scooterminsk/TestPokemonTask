@@ -23,7 +23,6 @@ protocol DetailViewPresenterProtocol: AnyObject {
     func getPokemonDescription()
     var pokemon: Pokemon? { get set }
     var pokemonDescription: PokemonDescriptionModel? { get set }
-    func tapBack()
 }
 
 class DetailPresenter: DetailViewPresenterProtocol {
@@ -73,9 +72,5 @@ class DetailPresenter: DetailViewPresenterProtocol {
                 print("Error occured while trying to get a pokemon image", error.localizedDescription)
             }
         }
-    }
-    
-    func tapBack() {
-        router?.popToRoot()
     }
 }
