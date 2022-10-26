@@ -22,11 +22,4 @@ struct PokemonDescriptionModel: Codable {
     let name: String
     let types: [TypeElement]
     let weight: Int
-
-    enum CodingKeys: String, CodingKey {
-        case height
-        case name
-        case types
-        case weight
-    }
 }
