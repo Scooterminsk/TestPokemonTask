@@ -93,7 +93,7 @@ extension DetailViewController: DetailViewProtocol {
             // Because default height is in decimetres, default weight is in hectograms, according to API documentation
             heightLabel.text = "Height: " + String(height * 10) + " cm"
             weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
-            typesLabel.text = "Types: " + types.map{$0.type.name.capitalized}.joined(separator: ", ")
+            typesLabel.text = (types.count > 1 ? "Types: ": "Type: ") + types.map{$0.type.name.capitalized}.joined(separator: ", ")
         }
     }
     
