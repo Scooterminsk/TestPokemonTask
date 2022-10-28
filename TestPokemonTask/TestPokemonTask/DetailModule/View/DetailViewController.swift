@@ -49,8 +49,8 @@ class DetailViewController: UIViewController {
     
     private let hpLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.text = "HP"
+        label.font = .systemFont(ofSize: 13)
+        label.text = "HP 100/100"
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -160,7 +160,7 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 20),
             topImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topImageView.heightAnchor.constraint(equalToConstant: 350),
@@ -171,7 +171,7 @@ extension DetailViewController {
             pokemonImageView.heightAnchor.constraint(equalToConstant: view.frame.width - 20),
             
             nameAndLineStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameAndLineStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 50),
+            nameAndLineStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 20),
             nameAndLineStackView.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
             
             

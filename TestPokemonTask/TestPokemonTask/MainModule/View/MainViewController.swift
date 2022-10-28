@@ -119,7 +119,7 @@ extension MainViewController {
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 14),
             logoImageView.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
             logoImageView.heightAnchor.constraint(equalToConstant: view.frame.width / 2),
             
