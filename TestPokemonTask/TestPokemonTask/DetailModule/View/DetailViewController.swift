@@ -32,6 +32,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.text = "Pokemon not saved"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
