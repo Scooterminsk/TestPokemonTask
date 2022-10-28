@@ -8,23 +8,32 @@
 import Foundation
 import Network
 
-class NetworkMonitor {
+protocol NetworkMonitorProtocol {
+    func startMonitoring()
+    func stopMonitoring()
+    var isReachable: Bool { get set }
+}
+
+class NetworkMonitor: NetworkMonitorProtocol {
+    
+    static let shared = NetworkMonitor()
+    
+    private init() {}
 
     let monitor = NWPathMonitor()
     private var status: NWPath.Status = .requiresConnection
-    var isReachable: Bool { status == .satisfied }
-
+    var isReachable: Bool = true
+    
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }
             self.status = path.status
+            self.isReachable = (path.status == .satisfied) ? true : false
 
             if path.status == .satisfied {
                 print("We're connected!")
-                // post connected notification
             } else {
                 print("No connection.")
-                // post disconnected notification
             }
         }
 
