@@ -37,6 +37,16 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    private let greenLineImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.backgroundColor = .clear
+        imageView.image = UIImage(named: "greenLine")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let typesLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
@@ -61,6 +71,7 @@ class DetailViewController: UIViewController {
          return label
     }()
     
+    private var nameAndLineStackView = UIStackView()
     private var parametersStackView = UIStackView()
     
     var presenter: DetailViewPresenterProtocol!
@@ -79,13 +90,21 @@ class DetailViewController: UIViewController {
         
         view.addSubview(topImageView)
         view.addSubview(pokemonImageView)
-        view.addSubview(nameLabel)
+        
+        nameAndLineStackView = UIStackView(arrangedSubviews: [nameLabel,
+                                                             greenLineImageView],
+                                           axis: .vertical,
+                                           spacing: 10,
+                                           distribution: .fillProportionally)
+        
         parametersStackView = UIStackView(arrangedSubviews: [typesLabel,
                                                              weightLabel,
                                                              heightLabel],
                                           axis: .vertical,
                                           spacing: 10,
                                           distribution: .fillProportionally)
+        
+        view.addSubview(nameAndLineStackView)
         view.addSubview(parametersStackView)
     }
 }
@@ -140,8 +159,9 @@ extension DetailViewController {
             pokemonImageView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
             pokemonImageView.heightAnchor.constraint(equalToConstant: view.frame.width - 20),
             
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 50),
+            nameAndLineStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameAndLineStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 50),
+            nameAndLineStackView.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
             
             
             parametersStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 100),
