@@ -17,9 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-Wf-Gn0">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="yR1-7F-Pqd">
                                 <rect key="frame" x="-317" y="297" width="1024" height="250"/>
                             </imageView>
@@ -36,6 +33,9 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-Wf-Gn0">
+                                <rect key="frame" x="-12" y="-24" width="414" height="892"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -43,11 +43,11 @@
                             <constraint firstItem="yR1-7F-Pqd" firstAttribute="centerX" secondItem="Jtx-kv-R2T" secondAttribute="centerX" id="9l8-Lw-fZt"/>
                             <constraint firstItem="tGG-Wf-Gn0" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ANZ-k4-CDf"/>
                             <constraint firstItem="yR1-7F-Pqd" firstAttribute="top" secondItem="HYg-fD-qk5" secondAttribute="bottom" constant="18" id="AdK-Fb-M7K"/>
-                            <constraint firstItem="tGG-Wf-Gn0" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-47" id="BgS-jg-70r"/>
+                            <constraint firstItem="tGG-Wf-Gn0" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-71" id="BgS-jg-70r"/>
                             <constraint firstItem="Jtx-kv-R2T" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="156" id="EoV-6l-Uvd"/>
                             <constraint firstItem="Jtx-kv-R2T" firstAttribute="centerX" secondItem="tGG-Wf-Gn0" secondAttribute="centerX" id="Ub2-Gr-Zuh"/>
                             <constraint firstItem="Jtx-kv-R2T" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YJN-Fe-XZj"/>
-                            <constraint firstItem="tGG-Wf-Gn0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zjk-Ii-MCy"/>
+                            <constraint firstItem="tGG-Wf-Gn0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-12" id="Zjk-Ii-MCy"/>
                             <constraint firstItem="Jtx-kv-R2T" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Znx-nX-gla"/>
                             <constraint firstItem="tGG-Wf-Gn0" firstAttribute="centerY" secondItem="yR1-7F-Pqd" secondAttribute="centerY" id="d2e-N0-CG6"/>
                             <constraint firstItem="HYg-fD-qk5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="157" id="e0r-fQ-p1n"/>

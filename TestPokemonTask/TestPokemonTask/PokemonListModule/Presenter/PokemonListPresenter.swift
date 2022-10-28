@@ -92,11 +92,11 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
                     guard let pokemonModel = pokemonModel else { return }
                     self.pokemons?.append(contentsOf: pokemonModel.results)
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 10)
-                    self.view?.success()
-                } else {
-                    self.view?.failure(error: error!)
+                        self.view?.success()
+                    } else {
+                        self.view?.failure(error: error!)
+                    }
                 }
-            }
         }
     }
 }
