@@ -9,11 +9,19 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    private let topImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "backgroundDetail")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let pokemonImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.backgroundColor = .clear
         imageView.image = UIImage(named: "unknown")
-        imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,9 +77,10 @@ class DetailViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .white
         
+        view.addSubview(topImageView)
         view.addSubview(pokemonImageView)
-        parametersStackView = UIStackView(arrangedSubviews: [nameLabel,
-                                                             typesLabel,
+        view.addSubview(nameLabel)
+        parametersStackView = UIStackView(arrangedSubviews: [typesLabel,
                                                              weightLabel,
                                                              heightLabel],
                                           axis: .vertical,
@@ -121,12 +130,21 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            topImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topImageView.heightAnchor.constraint(equalToConstant: 350),
+            
             pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            pokemonImageView.topAnchor.constraint(equalTo: topImageView.topAnchor),
             pokemonImageView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
             pokemonImageView.heightAnchor.constraint(equalToConstant: view.frame.width - 20),
             
-            parametersStackView.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 20),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 50),
+            
+            
+            parametersStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 100),
             parametersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             parametersStackView.widthAnchor.constraint(equalToConstant: view.frame.width - 20)
         ])
