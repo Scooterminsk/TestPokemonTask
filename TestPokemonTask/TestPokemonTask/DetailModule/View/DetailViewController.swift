@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     private let pokemonImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.backgroundColor = .clear
+        imageView.image = UIImage(named: "unknown")
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
@@ -23,7 +24,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .center
-        label.text = "Unknown name"
+        label.text = "Pokemon not saved"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +33,6 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
-        label.text = "Unknown pokemon's type"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,7 +41,6 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
-        label.text = "Unknown pokemon's weight"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +49,6 @@ class DetailViewController: UIViewController {
         let label = UILabel()
          label.font = .systemFont(ofSize: 18)
          label.textAlignment = .center
-         label.text = "Unknown pokemon's height"
          label.translatesAutoresizingMaskIntoConstraints = false
          return label
     }()
