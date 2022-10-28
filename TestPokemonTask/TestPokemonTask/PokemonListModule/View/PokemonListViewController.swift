@@ -37,6 +37,17 @@ class PokemonListViewController: UIViewController {
         pokemonNamesTableView.dataSource = self
         pokemonNamesTableView.delegate = self
     }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
+    }
 
 
 }
@@ -71,8 +82,11 @@ extension PokemonListViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > pokemonNamesTableView.contentSize.height - 70 - scrollView.frame.size.height && presenter.pokemons?.count ?? 0 < 20 {
+        if position > pokemonNamesTableView.contentSize.height - 70 - scrollView.frame.size.height
+            && presenter.pokemons?.count ?? 0 < 20 {
+            self.pokemonNamesTableView.tableFooterView = createSpinnerFooter()
             presenter.getPokemonsPagination()
+            self.pokemonNamesTableView.tableFooterView = nil
         }
     }
 }
