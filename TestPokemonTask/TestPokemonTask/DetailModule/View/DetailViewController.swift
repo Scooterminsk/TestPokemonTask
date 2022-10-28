@@ -47,6 +47,16 @@ class DetailViewController: UIViewController {
         return imageView
     }()
     
+    private let hpLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.text = "HP"
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let typesLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
@@ -92,7 +102,8 @@ class DetailViewController: UIViewController {
         view.addSubview(pokemonImageView)
         
         nameAndLineStackView = UIStackView(arrangedSubviews: [nameLabel,
-                                                             greenLineImageView],
+                                                             greenLineImageView,
+                                                             hpLabel],
                                            axis: .vertical,
                                            spacing: 10,
                                            distribution: .fillProportionally)
