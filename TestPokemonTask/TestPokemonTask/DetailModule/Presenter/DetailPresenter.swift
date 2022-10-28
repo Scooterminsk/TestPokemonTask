@@ -9,6 +9,7 @@ import Foundation
 
 protocol DetailViewProtocol: AnyObject {
     func pokemonDescriptionSuccess()
+    func pokemonDescriptionSuccessRealm(name: String, height: Int, weight: Int, types: String)
     func pokemonDescriptionFailure(error: Error)
     func setPokemonImage(imageData: Data?)
 }
@@ -17,11 +18,15 @@ protocol DetailViewPresenterProtocol: AnyObject {
     init(view: DetailViewProtocol,
          networkRequestService: NetworkRequestProtocol,
          networkFetchService: NetworkDataFetchProtocol,
+         id: Int?,
          router: RouterProtocol,
+         dbManager: DBManagerProtocol,
          pokemon: Pokemon?)
     
     func getPokemonDescription()
     var pokemon: Pokemon? { get set }
+    var dbManager: DBManagerProtocol? { get set }
+    var id: Int? { get set }
     var pokemonDescription: PokemonDescriptionModel? { get set }
 }
 
@@ -30,29 +35,50 @@ class DetailPresenter: DetailViewPresenterProtocol {
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!
     var router: RouterProtocol?
+    var dbManager: DBManagerProtocol?
     var pokemon: Pokemon?
+    var id: Int?
     var pokemonDescription: PokemonDescriptionModel?
     
     required init(view: DetailViewProtocol,
                   networkRequestService: NetworkRequestProtocol,
                   networkFetchService: NetworkDataFetchProtocol,
+                  id: Int?,
                   router: RouterProtocol,
+                  dbManager: DBManagerProtocol,
                   pokemon: Pokemon?) {
         self.view = view
         self.networkRequestService = networkRequestService
         self.networkFetchService = networkFetchService
+        self.id = id
+        self.dbManager = dbManager
         self.router = router
         self.pokemon = pokemon
     }
     
     public func getPokemonDescription() {
+        let pokemonDescriptionRealm = dbManager?.obtainPokemonDescription(primaryKey: id!)
+        if let pokemonDescriptionRealm = pokemonDescriptionRealm {
+            view?.pokemonDescriptionSuccessRealm(name: pokemonDescriptionRealm.name,
+                                                 height: pokemonDescriptionRealm.height,
+                                                 weight: pokemonDescriptionRealm.weight,
+                                                 types: pokemonDescriptionRealm.types)
+            view?.setPokemonImage(imageData: pokemonDescriptionRealm.image)
+        } else {
+            getPokemonDescriptionFromAPI()
+        }
+    }
+    
+    private func getPokemonDescriptionFromAPI() {
         networkFetchService.fetchPokemonDescription(urlString: pokemon?.url ?? "") { [weak self] pokemonDescriptionModel, error in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if error == nil {
                     guard let pokemonDescriptionModel = pokemonDescriptionModel else { return }
                     self.pokemonDescription = pokemonDescriptionModel
+                    self.savePokemonDescriptionRealm(pokemon: pokemonDescriptionModel, id: self.id)
                     self.getPokemonImage(urlString: pokemonDescriptionModel.sprites.other?.home.front_default)
+                    print("SAVED")
                     self.view?.pokemonDescriptionSuccess()
                 } else {
                     self.view?.pokemonDescriptionFailure(error: error!)
@@ -72,5 +98,17 @@ class DetailPresenter: DetailViewPresenterProtocol {
                 print("Error occured while trying to get a pokemon image", error.localizedDescription)
             }
         }
+    }
+    
+    private func savePokemonDescriptionRealm(pokemon: PokemonDescriptionModel?, id: Int?) {
+        guard let pokemon = pokemon,
+              let id = id else { return }
+        let pokemonDescriptionRealm = PokemonDescriptionModelRealm()
+        pokemonDescriptionRealm.id = id
+        pokemonDescriptionRealm.height = pokemon.height
+        pokemonDescriptionRealm.name = pokemon.name
+        pokemonDescriptionRealm.types = pokemon.types.map{$0.type.name.capitalized}.joined(separator: ", ")
+        pokemonDescriptionRealm.weight = pokemon.weight
+        dbManager?.save(pokemonDescriptionModel: pokemonDescriptionRealm)
     }
 }

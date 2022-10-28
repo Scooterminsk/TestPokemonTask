@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .center
-        label.text = "Name"
+        label.text = "Unknown name"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
-        label.text = "Pokemon's types are: test, test, test"
+        label.text = "Unknown pokemon's type"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
-        label.text = "Pokemon's weight is 10 kg"
+        label.text = "Unknown pokemon's weight"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +50,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
          label.font = .systemFont(ofSize: 18)
          label.textAlignment = .center
-         label.text = "Pokemon's height is 150 cm"
+         label.text = "Unknown pokemon's height"
          label.translatesAutoresizingMaskIntoConstraints = false
          return label
     }()
@@ -85,9 +85,14 @@ class DetailViewController: UIViewController {
 
 //MARK: - DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
+    
     func setPokemonImage(imageData: Data?) {
-        guard let data = imageData else { return }
+        guard let data = imageData else {
+            pokemonImageView.image = UIImage(named: "unknown")
+            return
+        }
         pokemonImageView.image = UIImage(data: data)
+        presenter.dbManager?.updatePokemonsImage(id: presenter.id, imageData: data)
     }
     
     func pokemonDescriptionSuccess() {
@@ -98,8 +103,15 @@ extension DetailViewController: DetailViewProtocol {
             // Because default height is in decimetres, default weight is in hectograms, according to API documentation
             heightLabel.text = "Height: " + String(height * 10) + " cm"
             weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
-            typesLabel.text = (types.count > 1 ? "Types: ": "Type: ") + types.map{$0.type.name.capitalized}.joined(separator: ", ")
+            typesLabel.text = "Type: " + types.map{$0.type.name.capitalized}.joined(separator: ", ")
         }
+    }
+    
+    func pokemonDescriptionSuccessRealm(name: String, height: Int, weight: Int, types: String) {
+        nameLabel.text = name.capitalized
+        heightLabel.text = "Height: " + String(height * 10) + " cm"
+        weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
+        typesLabel.text = "Type: " + types
     }
     
     func pokemonDescriptionFailure(error: Error) {

@@ -61,8 +61,19 @@ extension PokemonListViewController: UITableViewDataSource {
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pokemon = presenter.pokemons?[indexPath.row]
-        presenter.tapOnPokemonsName(pokemon: pokemon)
+        presenter.tapOnPokemonsName(pokemon: pokemon, id: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > pokemonNamesTableView.contentSize.height - 70 - scrollView.frame.size.height && presenter.pokemons?.count ?? 0 < 20 {
+            presenter.getPokemonsPagination()
+        }
     }
 }
 
