@@ -59,13 +59,34 @@ class DetailViewController: UIViewController {
     
     private let typesLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 11)
+        label.text = "TYPE"
+        label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private let typesDescriptionLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let weightLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 11)
+        label.text = "WEIGHT"
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let weightDescriptionLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
@@ -74,6 +95,16 @@ class DetailViewController: UIViewController {
     }()
     
     private let heightLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 11)
+        label.text = "HEIGHT"
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let heightDescriptionLabel: UILabel = {
         let label = UILabel()
          label.font = .systemFont(ofSize: 18)
          label.textAlignment = .center
@@ -81,7 +112,19 @@ class DetailViewController: UIViewController {
          return label
     }()
     
+    private let pokeballImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "pokeball")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private var nameAndLineStackView = UIStackView()
+    private var typesStackView = UIStackView()
+    private var weightStackView = UIStackView()
+    private var heightStackView = UIStackView()
     private var parametersStackView = UIStackView()
     
     var presenter: DetailViewPresenterProtocol!
@@ -108,15 +151,34 @@ class DetailViewController: UIViewController {
                                            spacing: 10,
                                            distribution: .fillProportionally)
         
-        parametersStackView = UIStackView(arrangedSubviews: [typesLabel,
-                                                             weightLabel,
-                                                             heightLabel],
-                                          axis: .vertical,
+        weightStackView = UIStackView(arrangedSubviews: [weightDescriptionLabel,
+                                                         weightLabel],
+                                       axis: .vertical,
+                                       spacing: 5,
+                                       distribution: .fillProportionally)
+        
+        typesStackView = UIStackView(arrangedSubviews: [typesDescriptionLabel,
+                                                       typesLabel],
+                                     axis: .vertical,
+                                     spacing: 5,
+                                     distribution: .fillProportionally)
+        
+        heightStackView = UIStackView(arrangedSubviews: [heightDescriptionLabel,
+                                                         heightLabel],
+                                       axis: .vertical,
+                                       spacing: 5,
+                                       distribution: .fillProportionally)
+        
+        parametersStackView = UIStackView(arrangedSubviews: [weightStackView,
+                                                             typesStackView,
+                                                             heightStackView],
+                                          axis: .horizontal,
                                           spacing: 10,
-                                          distribution: .fillProportionally)
+                                          distribution: .fillEqually)
         
         view.addSubview(nameAndLineStackView)
         view.addSubview(parametersStackView)
+        view.addSubview(pokeballImageView)
     }
 }
 
@@ -138,17 +200,17 @@ extension DetailViewController: DetailViewProtocol {
            let weight = presenter.pokemonDescription?.weight,
            let types = presenter.pokemonDescription?.types {
             // Because default height is in decimetres, default weight is in hectograms, according to API documentation
-            heightLabel.text = "Height: " + String(height * 10) + " cm"
-            weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
-            typesLabel.text = "Type: " + types.map{$0.type.name.capitalized}.joined(separator: ", ")
+            heightDescriptionLabel.text = String(height * 10) + " cm"
+            weightDescriptionLabel.text = String(Double(weight) / 10.0) + " kg"
+            typesDescriptionLabel.text = types.map{$0.type.name.capitalized}.joined(separator: " / ")
         }
     }
     
     func pokemonDescriptionSuccessRealm(name: String, height: Int, weight: Int, types: String) {
         nameLabel.text = name.capitalized
-        heightLabel.text = "Height: " + String(height * 10) + " cm"
-        weightLabel.text = "Weight: " + String(Double(weight) / 10.0) + " kg"
-        typesLabel.text = "Type: " + types
+        heightDescriptionLabel.text = String(height * 10) + " cm"
+        weightDescriptionLabel.text = String(Double(weight) / 10.0) + " kg"
+        typesDescriptionLabel.text = types
     }
     
     func pokemonDescriptionFailure(error: Error) {
@@ -175,9 +237,14 @@ extension DetailViewController {
             nameAndLineStackView.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
             
             
-            parametersStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 100),
+            parametersStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: view.frame.width / 4),
             parametersStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            parametersStackView.widthAnchor.constraint(equalToConstant: view.frame.width - 20)
+            parametersStackView.widthAnchor.constraint(equalToConstant: view.frame.width - 20),
+            
+            pokeballImageView.topAnchor.constraint(equalTo: parametersStackView.bottomAnchor, constant: 20),
+            pokeballImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pokeballImageView.widthAnchor.constraint(equalToConstant: 30),
+            pokeballImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
