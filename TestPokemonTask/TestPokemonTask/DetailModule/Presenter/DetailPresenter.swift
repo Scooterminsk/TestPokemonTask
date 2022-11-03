@@ -57,15 +57,17 @@ class DetailPresenter: DetailViewPresenterProtocol {
     }
     
     public func getPokemonDescription() {
-        let pokemonDescriptionRealm = dbManager?.obtainPokemonDescription(primaryKey: id!)
-        if let pokemonDescriptionRealm = pokemonDescriptionRealm {
-            view?.pokemonDescriptionSuccessRealm(name: pokemonDescriptionRealm.name,
-                                                 height: pokemonDescriptionRealm.height,
-                                                 weight: pokemonDescriptionRealm.weight,
-                                                 types: pokemonDescriptionRealm.types)
-            view?.setPokemonImage(imageData: pokemonDescriptionRealm.image)
-        } else {
-            getPokemonDescriptionFromAPI()
+        if let id = id {
+            let pokemonDescriptionRealm = dbManager?.obtainPokemonDescription(primaryKey: id)
+            if let pokemonDescriptionRealm = pokemonDescriptionRealm {
+                view?.pokemonDescriptionSuccessRealm(name: pokemonDescriptionRealm.name,
+                                                     height: pokemonDescriptionRealm.height,
+                                                     weight: pokemonDescriptionRealm.weight,
+                                                     types: pokemonDescriptionRealm.types)
+                view?.setPokemonImage(imageData: pokemonDescriptionRealm.image)
+            } else {
+                getPokemonDescriptionFromAPI()
+            }
         }
     }
     
@@ -81,7 +83,8 @@ class DetailPresenter: DetailViewPresenterProtocol {
                     print("SAVED")
                     self.view?.pokemonDescriptionSuccess()
                 } else {
-                    self.view?.pokemonDescriptionFailure(error: error!)
+                    guard let error = error else { return }
+                    self.view?.pokemonDescriptionFailure(error: error)
                 }
             }
         }

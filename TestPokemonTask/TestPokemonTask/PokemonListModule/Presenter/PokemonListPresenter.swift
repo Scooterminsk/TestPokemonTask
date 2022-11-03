@@ -42,9 +42,9 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     
     func getPokemons() {
         let pokemonsRealm = dbManager?.obtainPokemons()
-        if pokemonsRealm!.count > 0 {
+        if (pokemonsRealm ?? [PokemonModelRealm]()).count > 0 {
             var allPokemons = [Pokemon]()
-            for pokemon in pokemonsRealm! {
+            for pokemon in pokemonsRealm ?? [PokemonModelRealm]() {
                 let currentPokemon = Pokemon(name: pokemon.name, url: pokemon.url)
                 allPokemons.append(currentPokemon)
             }
@@ -66,7 +66,8 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 0)
                     self.view?.success()
                 } else {
-                    self.view?.failure(error: error!)
+                    guard let error = error else { return }
+                    self.view?.failure(error: error)
                 }
             }
         }
@@ -94,7 +95,8 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 10)
                         self.view?.success()
                     } else {
-                        self.view?.failure(error: error!)
+                        guard let error = error else { return }
+                        self.view?.failure(error: error)
                     }
                 }
         }
