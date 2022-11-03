@@ -13,7 +13,7 @@ protocol PokemonListViewProtocol: AnyObject {
 }
 
 protocol PokemonListPresenterProtocol: AnyObject {
-    init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol)
+    init(view: PokemonListViewProtocol, networkFetchService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol)
     func getPokemons()
     var pokemons: [Pokemon]? { get set }
     func tapOnPokemonsName(pokemon: Pokemon?, id: Int?)
@@ -22,14 +22,14 @@ protocol PokemonListPresenterProtocol: AnyObject {
 
 class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
-    let networkService: NetworkDataFetchProtocol!
+    let networkFetchService: NetworkDataFetchProtocol!
     var router: RouterProtocol?
     var pokemons: [Pokemon]?
     var dbManager: DBManagerProtocol?
     
-    required init(view: PokemonListViewProtocol, networkService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol) {
+    required init(view: PokemonListViewProtocol, networkFetchService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol) {
         self.view = view
-        self.networkService = networkService
+        self.networkFetchService = networkFetchService
         self.router = router
         self.dbManager = dbManager
         getPokemons()
@@ -57,7 +57,7 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     }
     
     private func getPokemonsFromAPI() {
-        networkService.fetchPokemons(pagination: false) { [weak self] pokemonModel, error in
+        networkFetchService.fetchPokemons(pagination: false) { [weak self] pokemonModel, error in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if error == nil {
@@ -85,7 +85,7 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     }
     
     func getPokemonsPagination() {
-        networkService.fetchPokemons(pagination: true) { [weak self] pokemonModel, error in
+        networkFetchService.fetchPokemons(pagination: true) { [weak self] pokemonModel, error in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if error == nil {
