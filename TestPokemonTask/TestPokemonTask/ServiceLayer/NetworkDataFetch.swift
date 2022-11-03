@@ -55,6 +55,7 @@ class NetworkDataFetch: NetworkDataFetchProtocol {
                     response(pokemonDescription, nil)
                 } catch let jsonError {
                     print("Failed to decode JSON", jsonError)
+                    response(nil, jsonError)
                 }
             case .failure(let error):
                 print("Error received requesting data: \(error.localizedDescription)")
