@@ -25,17 +25,20 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
     func createPokemonListModule(router: RouterProtocol) -> UIViewController {
         let view = PokemonListViewController()
-        let networkService = NetworkDataFetch.shared
+        let urlSession = URLSession(configuration: .default)
+        let networkRequestService = NetworkRequest(urlSessionObject: urlSession)
+        let networkFetchService = NetworkDataFetch(networkRequestService: networkRequestService)
         let dbManager = DBManager()
-        let presenter = PokemonListPresenter(view: view, networkService: networkService, router: router, dbManager: dbManager)
+        let presenter = PokemonListPresenter(view: view, networkFetchService: networkFetchService, router: router, dbManager: dbManager)
         view.presenter = presenter
         return view
     }
     
     func createDetailModule(pokemon: Pokemon?, id: Int?, router: RouterProtocol) -> UIViewController {
         let view = DetailViewController()
-        let networkRequestService = NetworkRequest.shared
-        let networkFetchService = NetworkDataFetch.shared
+        let urlSession = URLSession(configuration: .default)
+        let networkRequestService = NetworkRequest(urlSessionObject: urlSession)
+        let networkFetchService = NetworkDataFetch(networkRequestService: networkRequestService)
         let dbManager = DBManager()
         let presenter = DetailPresenter(view: view,
                                         networkRequestService: networkRequestService,
