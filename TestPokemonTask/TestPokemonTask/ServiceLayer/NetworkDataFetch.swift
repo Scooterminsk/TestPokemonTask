@@ -8,22 +8,26 @@
 import Foundation
 
 protocol NetworkDataFetchProtocol {
+    init(networkRequestService: NetworkRequestProtocol)
     func fetchPokemons(pagination: Bool, response: @escaping (PokemonModel?, Error?) -> Void)
     func fetchPokemonDescription(urlString: String, response: @escaping (PokemonDescriptionModel?, Error?) -> Void)
 }
 
 class NetworkDataFetch: NetworkDataFetchProtocol {
+    var networkRequestService: NetworkRequestProtocol?
     
-    static let shared = NetworkDataFetch()
-    
-    private init() {}
+    required init(networkRequestService: NetworkRequestProtocol) {
+        self.networkRequestService = networkRequestService
+    }
     
     func fetchPokemons(pagination: Bool = false, response: @escaping (PokemonModel?, Error?) -> Void) {
         
         let urlString = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10"
         let urlStringPagination = "https://pokeapi.co/api/v2/pokemon?offset=10&limit=20"
         
-        NetworkRequest.shared.requestData(urlString: pagination == false ? urlString: urlStringPagination) { result in
+        guard let networkRequestService = networkRequestService else { return }
+        
+        networkRequestService.requestData(urlString: pagination == false ? urlString: urlStringPagination) { result in
             switch result {
             case .success(let data):
                 do {
@@ -41,7 +45,9 @@ class NetworkDataFetch: NetworkDataFetchProtocol {
     
     func fetchPokemonDescription(urlString: String, response: @escaping (PokemonDescriptionModel?, Error?) -> Void) {
         
-        NetworkRequest.shared.requestData(urlString: urlString) { result in
+        guard let networkRequestService = networkRequestService else { return }
+        
+        networkRequestService.requestData(urlString: urlString) { result in
             switch result {
             case .success(let data):
                 do {
