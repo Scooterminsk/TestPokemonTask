@@ -9,19 +9,22 @@ import Foundation
 
 protocol NetworkRequestProtocol {
     func requestData(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
+    init(urlSessionObject: URLSession)
 }
 
 class NetworkRequest: NetworkRequestProtocol {
+    var urlSessionObject: URLSession?
     
-    static let shared = NetworkRequest()
-    
-    private init() {}
+    required init(urlSessionObject: URLSession) {
+        self.urlSessionObject = urlSessionObject
+    }
     
     func requestData(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
         guard let url = URL(string: urlString) else { return }
+        guard let urlSessionObject = urlSessionObject else { return }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        urlSessionObject.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
