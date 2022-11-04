@@ -19,6 +19,7 @@ protocol DetailViewPresenterProtocol: AnyObject {
          networkRequestService: NetworkRequestProtocol,
          networkFetchService: NetworkDataFetchProtocol,
          id: Int?,
+         networkMonitor: NetworkMonitorProtocol,
          router: RouterProtocol,
          dbManager: DBManagerProtocol,
          pokemon: Pokemon?)
@@ -34,6 +35,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
     weak var view: DetailViewProtocol?
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!
+    let networkMonitor: NetworkMonitorProtocol!
     var router: RouterProtocol?
     var dbManager: DBManagerProtocol?
     var pokemon: Pokemon?
@@ -44,6 +46,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
                   networkRequestService: NetworkRequestProtocol,
                   networkFetchService: NetworkDataFetchProtocol,
                   id: Int?,
+                  networkMonitor: NetworkMonitorProtocol,
                   router: RouterProtocol,
                   dbManager: DBManagerProtocol,
                   pokemon: Pokemon?) {
@@ -52,6 +55,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
         self.networkFetchService = networkFetchService
         self.id = id
         self.dbManager = dbManager
+        self.networkMonitor = networkMonitor
         self.router = router
         self.pokemon = pokemon
     }
