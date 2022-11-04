@@ -59,14 +59,16 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     private func getPokemonsFromAPI() {
         networkFetchService.fetchPokemons(pagination: false) { [weak self] pokemonModel, error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if error == nil {
-                    guard let pokemonModel = pokemonModel else { return }
-                    self.pokemons = pokemonModel.results
+            if error == nil {
+                guard let pokemonModel = pokemonModel else { return }
+                self.pokemons = pokemonModel.results
+                DispatchQueue.main.async {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 0)
                     self.view?.success()
-                } else {
-                    guard let error = error else { return }
+                }
+            } else {
+                guard let error = error else { return }
+                DispatchQueue.main.async {
                     self.view?.failure(error: error)
                 }
             }
@@ -88,17 +90,19 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     func getPokemonsPagination() {
         networkFetchService.fetchPokemons(pagination: true) { [weak self] pokemonModel, error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if error == nil {
-                    guard let pokemonModel = pokemonModel else { return }
-                    self.pokemons?.append(contentsOf: pokemonModel.results)
+            if error == nil {
+                guard let pokemonModel = pokemonModel else { return }
+                self.pokemons?.append(contentsOf: pokemonModel.results)
+                DispatchQueue.main.async {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 10)
-                        self.view?.success()
-                    } else {
-                        guard let error = error else { return }
-                        self.view?.failure(error: error)
-                    }
+                    self.view?.success()
                 }
+            } else {
+                guard let error = error else { return }
+                DispatchQueue.main.async {
+                    self.view?.failure(error: error)
+                }
+            }
         }
     }
 }

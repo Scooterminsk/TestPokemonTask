@@ -191,8 +191,10 @@ extension DetailViewController: DetailViewProtocol {
             pokemonImageView.image = UIImage(named: "unknown")
             return
         }
-        pokemonImageView.image = UIImage(data: data)
-        presenter.dbManager?.updatePokemonsImage(id: presenter.id, imageData: data)
+        DispatchQueue.main.async {
+            self.pokemonImageView.image = UIImage(data: data)
+            self.presenter.dbManager?.updatePokemonsImage(id: self.presenter.id, imageData: data)
+        }
     }
     
     func pokemonDescriptionSuccess() {

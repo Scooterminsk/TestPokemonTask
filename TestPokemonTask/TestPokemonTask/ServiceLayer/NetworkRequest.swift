@@ -25,14 +25,12 @@ class NetworkRequest: NetworkRequestProtocol {
         guard let urlSessionObject = urlSessionObject else { return }
         
         urlSessionObject.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                guard let data = data else { return }
-                completion(.success(data))
+            if let error = error {
+                completion(.failure(error))
+                return
             }
+            guard let data = data else { return }
+            completion(.success(data))
         }
         .resume()
     }
