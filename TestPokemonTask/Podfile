@@ -7,16 +7,19 @@ target 'TestPokemonTask' do
 
   # Pods for TestPokemonTask
   pod 'RealmSwift', '~>10'
+  pod 'R.swift'
 
   target 'TestPokemonTaskTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'RealmSwift', '~>10'
+    pod 'R.swift'
   end
 
   target 'TestPokemonTaskUITests' do
     # Pods for testing
     pod 'RealmSwift', '~>10'
+    pod 'R.swift'
   end
 
 end
