@@ -36,6 +36,7 @@
 		E4F45507290AEB2100E10B4A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F45506290AEB2100E10B4A /* DBManager.swift */; };
 		E4F45509290B0DD200E10B4A /* PokemonDescriptionModelRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F45508290B0DD200E10B4A /* PokemonDescriptionModelRealm.swift */; };
 		E4F6A7832915480A0022054E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6A7822915480A0022054E /* R.generated.swift */; };
+		E4F6A7852915528A0022054E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F6A7842915528A0022054E /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		E4F45506290AEB2100E10B4A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		E4F45508290B0DD200E10B4A /* PokemonDescriptionModelRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDescriptionModelRealm.swift; sourceTree = "<group>"; };
 		E4F6A7822915480A0022054E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		E4F6A7842915528A0022054E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				E4A6D1C7290873BE00552568 /* AssemblyModuleBuilder.swift */,
 				E49112A329098F0700628FAB /* Router.swift */,
+				E4F6A7842915528A0022054E /* Logger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 			files = (
 				E4DF239B2908033100AE96AC /* PokemonListViewController.swift in Sources */,
 				E4DCB036290A6A70002E98CE /* MainPresenter.swift in Sources */,
+				E4F6A7852915528A0022054E /* Logger.swift in Sources */,
 				E4A6D1BC29085D4D00552568 /* AllPokemonsModel.swift in Sources */,
 				E4A6D1C52908680800552568 /* PokemonListPresenter.swift in Sources */,
 				E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */,
