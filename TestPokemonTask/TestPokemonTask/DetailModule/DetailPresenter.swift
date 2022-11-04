@@ -19,6 +19,7 @@ protocol DetailViewPresenterProtocol: AnyObject {
          networkRequestService: NetworkRequestProtocol,
          networkFetchService: NetworkDataFetchProtocol,
          id: Int?,
+         networkMonitor: NetworkMonitorProtocol,
          router: RouterProtocol,
          dbManager: DBManagerProtocol,
          pokemon: Pokemon?)
@@ -34,6 +35,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
     weak var view: DetailViewProtocol?
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!
+    let networkMonitor: NetworkMonitorProtocol!
     var router: RouterProtocol?
     var dbManager: DBManagerProtocol?
     var pokemon: Pokemon?
@@ -44,6 +46,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
                   networkRequestService: NetworkRequestProtocol,
                   networkFetchService: NetworkDataFetchProtocol,
                   id: Int?,
+                  networkMonitor: NetworkMonitorProtocol,
                   router: RouterProtocol,
                   dbManager: DBManagerProtocol,
                   pokemon: Pokemon?) {
@@ -52,6 +55,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
         self.networkFetchService = networkFetchService
         self.id = id
         self.dbManager = dbManager
+        self.networkMonitor = networkMonitor
         self.router = router
         self.pokemon = pokemon
     }
@@ -74,18 +78,18 @@ class DetailPresenter: DetailViewPresenterProtocol {
     private func getPokemonDescriptionFromAPI() {
         networkFetchService.fetchPokemonDescription(urlString: pokemon?.url ?? "") { [weak self] pokemonDescriptionModel, error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if error == nil {
-                    guard let pokemonDescriptionModel = pokemonDescriptionModel else { return }
-                    self.pokemonDescription = pokemonDescriptionModel
+            if error == nil {
+                guard let pokemonDescriptionModel = pokemonDescriptionModel else { return }
+                self.pokemonDescription = pokemonDescriptionModel
+                DispatchQueue.main.async {
                     self.savePokemonDescriptionRealm(pokemon: pokemonDescriptionModel, id: self.id)
                     self.getPokemonImage(urlString: pokemonDescriptionModel.sprites.other?.home.front_default)
-                    print("SAVED")
+                    Log.info("SAVED")
                     self.view?.pokemonDescriptionSuccess()
-                } else {
-                    guard let error = error else { return }
-                    self.view?.pokemonDescriptionFailure(error: error)
                 }
+            } else {
+                guard let error = error else { return }
+                self.view?.pokemonDescriptionFailure(error: error)
             }
         }
     }
@@ -96,9 +100,12 @@ class DetailPresenter: DetailViewPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.setPokemonImage(imageData: data)
+                DispatchQueue.main.async {
+                    self.view?.setPokemonImage(imageData: data)
+                }
             case .failure(let error):
-                print("Error occured while trying to get a pokemon image", error.localizedDescription)
+                Log.error("Error occured while trying to get a pokemon image: \(error.localizedDescription)",
+                          shouldLogContext: true)
             }
         }
     }

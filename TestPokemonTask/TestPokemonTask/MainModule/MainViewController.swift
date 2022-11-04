@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "background")
+        imageView.image = R.image.background()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "AppIcon")
+        imageView.image = R.image.iconLaunchScreen()
         imageView.backgroundColor = .red
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     
     private lazy var pokemonListButton: UIButton = {
        let button = UIButton(type: .system)
-        button.backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.4588235294, blue: 0.5725490196, alpha: 1)
+        button.backgroundColor = R.color.brandColor()
         button.setTitle("Pokemon list", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 17)
@@ -44,7 +44,7 @@ class MainViewController: UIViewController {
     
     private lazy var loadFromStorageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = #colorLiteral(red: 0.8549019608, green: 0.4588235294, blue: 0.5725490196, alpha: 1)
+        button.backgroundColor = R.color.brandColor()
         button.setTitle("Offline mode", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 17)
@@ -64,15 +64,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.startCheckingConnection()
+        presenter.addNetworkObserver()
 
         setupViews()
         setConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        presenter.checkNetworkStatus()
+    deinit {
+        presenter.removeNetworkObserver()
     }
     
     private func setupViews() {
@@ -100,13 +99,13 @@ class MainViewController: UIViewController {
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func onlineMode() {
-        pokemonListButton.isEnabled = true
-        pokemonListButton.alpha = 1.0
+        self.pokemonListButton.isEnabled = true
+        self.pokemonListButton.alpha = 1.0
     }
     
     func offlineMode() {
-        loadFromStorageButton.isEnabled = true
-        loadFromStorageButton.alpha = 1.0
+        self.loadFromStorageButton.isEnabled = true
+        self.loadFromStorageButton.alpha = 1.0
     }
 }
 

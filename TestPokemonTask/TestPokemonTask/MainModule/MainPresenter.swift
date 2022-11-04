@@ -18,7 +18,8 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, networkMonitor: NetworkMonitorProtocol, router: RouterProtocol)
     func toPokemons()
     func startCheckingConnection()
-    func checkNetworkStatus()
+    func addNetworkObserver()
+    func removeNetworkObserver()
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -40,13 +41,27 @@ class MainPresenter: MainPresenterProtocol {
         networkMonitor.startMonitoring()
     }
     
-    func checkNetworkStatus() {
-        if networkMonitor.isReachable == false {
-            view?.alertNoNetworkAndCache()
-            view?.offlineMode()
+    func addNetworkObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showOfflineDeviceUI(notification:)), name: NSNotification.Name.connectivityStatus, object: nil)
+    }
+    
+    @objc func showOfflineDeviceUI(notification: Notification) {
+        if networkMonitor.isConnected {
+            Log.info("Connected.")
+            DispatchQueue.main.async {
+                self.view?.onlineMode()
+            }
         } else {
-            view?.onlineMode()
+            Log.info("Not connected.")
+            DispatchQueue.main.async {
+                self.view?.alertNoNetworkAndCache()
+                self.view?.offlineMode()
+            }
         }
+    }
+    
+    func removeNetworkObserver() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.connectivityStatus, object: nil)
     }
 }
 

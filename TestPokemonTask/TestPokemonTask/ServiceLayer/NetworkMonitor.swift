@@ -11,33 +11,36 @@ import Network
 protocol NetworkMonitorProtocol {
     func startMonitoring()
     func stopMonitoring()
-    var isReachable: Bool { get set }
+    var isConnected: Bool { get }
 }
 
-class NetworkMonitor: NetworkMonitorProtocol {
+extension Notification.Name {
+    static let connectivityStatus = Notification.Name(rawValue: "connectivityStatusChanged")
+}
+
+final class NetworkMonitor: NetworkMonitorProtocol {
     
     static let shared = NetworkMonitor()
+    private let queue = DispatchQueue(label: "NetworkMonitor")
+    private let monitor: NWPathMonitor
     
-    private init() {}
-
-    let monitor = NWPathMonitor()
-    private var status: NWPath.Status = .requiresConnection
-    var isReachable: Bool = true
+    private(set) var isConnected = false
+    private(set) var isExpensive = false
+    
+    private init() {
+        monitor = NWPathMonitor()
+    }
     
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }
-            self.status = path.status
-            self.isReachable = (path.status == .satisfied) ? true : false
-
-            if path.status == .satisfied {
-                print("We're connected!")
-            } else {
-                print("No connection.")
-            }
+            self.isConnected = path.status != .unsatisfied
+            self.isExpensive = path.isExpensive
+            
+            NotificationCenter.default.post(name: .connectivityStatus, object: nil)
         }
 
-        let queue = DispatchQueue(label: "NetworkMonitor")
+        
         monitor.start(queue: queue)
     }
 

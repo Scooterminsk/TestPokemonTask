@@ -19,29 +19,29 @@ protocol DBManagerProtocol {
 class DBManager: DBManagerProtocol {
     fileprivate lazy var mainRealm = try! Realm(configuration: .defaultConfiguration)
     
-    func save(pokemonModel: PokemonModelRealm) {
+    @MainActor func save(pokemonModel: PokemonModelRealm) {
         try! mainRealm.write {
             mainRealm.add(pokemonModel)
         }
     }
     
-    func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
+    @MainActor func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
         try! mainRealm.write {
             mainRealm.add(pokemonDescriptionModel)
         }
     }
     
-    func obtainPokemons() -> [PokemonModelRealm] {
+    @MainActor func obtainPokemons() -> [PokemonModelRealm] {
         let model = mainRealm.objects(PokemonModelRealm.self)
         return Array(model).sorted { $0.id < $1.id }
     }
     
-    func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
+    @MainActor func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
         let model = mainRealm.object(ofType: PokemonDescriptionModelRealm.self, forPrimaryKey: primaryKey)
         return model
     }
     
-    func updatePokemonsImage(id: Int?, imageData: Data?) {
+    @MainActor func updatePokemonsImage(id: Int?, imageData: Data?) {
         guard let id = id,
               let imageData = imageData else { return }
         
@@ -52,14 +52,14 @@ class DBManager: DBManagerProtocol {
         }
     }
     
-    func deleteAllPokemons() {
+    @MainActor func deleteAllPokemons() {
         try! mainRealm.write {
             let allPokemons = mainRealm.objects(PokemonModelRealm.self)
             mainRealm.delete(allPokemons)
         }
     }
     
-    func deleteAllPokemonDescriptions() {
+    @MainActor func deleteAllPokemonDescriptions() {
         try! mainRealm.write {
             let allPokemonDescriptions = mainRealm.objects(PokemonDescriptionModelRealm.self)
             mainRealm.delete(allPokemonDescriptions)

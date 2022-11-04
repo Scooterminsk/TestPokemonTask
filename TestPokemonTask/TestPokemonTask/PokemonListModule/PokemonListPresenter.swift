@@ -13,7 +13,11 @@ protocol PokemonListViewProtocol: AnyObject {
 }
 
 protocol PokemonListPresenterProtocol: AnyObject {
-    init(view: PokemonListViewProtocol, networkFetchService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol)
+    init(view: PokemonListViewProtocol,
+         networkFetchService: NetworkDataFetchProtocol,
+         networkMonitor: NetworkMonitorProtocol,
+         router: RouterProtocol,
+         dbManager: DBManagerProtocol)
     func getPokemons()
     var pokemons: [Pokemon]? { get set }
     func tapOnPokemonsName(pokemon: Pokemon?, id: Int?)
@@ -23,13 +27,19 @@ protocol PokemonListPresenterProtocol: AnyObject {
 class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
     let networkFetchService: NetworkDataFetchProtocol!
+    let networkMonitor: NetworkMonitorProtocol!
     var router: RouterProtocol?
     var pokemons: [Pokemon]?
     var dbManager: DBManagerProtocol?
     
-    required init(view: PokemonListViewProtocol, networkFetchService: NetworkDataFetchProtocol, router: RouterProtocol, dbManager: DBManagerProtocol) {
+    required init(view: PokemonListViewProtocol,
+                  networkFetchService: NetworkDataFetchProtocol,
+                  networkMonitor: NetworkMonitorProtocol,
+                  router: RouterProtocol,
+                  dbManager: DBManagerProtocol) {
         self.view = view
         self.networkFetchService = networkFetchService
+        self.networkMonitor = networkMonitor
         self.router = router
         self.dbManager = dbManager
         getPokemons()
@@ -59,16 +69,16 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     private func getPokemonsFromAPI() {
         networkFetchService.fetchPokemons(pagination: false) { [weak self] pokemonModel, error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if error == nil {
-                    guard let pokemonModel = pokemonModel else { return }
-                    self.pokemons = pokemonModel.results
+            if error == nil {
+                guard let pokemonModel = pokemonModel else { return }
+                self.pokemons = pokemonModel.results
+                DispatchQueue.main.async {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 0)
                     self.view?.success()
-                } else {
-                    guard let error = error else { return }
-                    self.view?.failure(error: error)
                 }
+            } else {
+                guard let error = error else { return }
+                self.view?.failure(error: error)
             }
         }
     }
@@ -88,17 +98,17 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     func getPokemonsPagination() {
         networkFetchService.fetchPokemons(pagination: true) { [weak self] pokemonModel, error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                if error == nil {
-                    guard let pokemonModel = pokemonModel else { return }
-                    self.pokemons?.append(contentsOf: pokemonModel.results)
+            if error == nil {
+                guard let pokemonModel = pokemonModel else { return }
+                self.pokemons?.append(contentsOf: pokemonModel.results)
+                DispatchQueue.main.async {
                     self.savePokemonsRealm(pokemons: pokemonModel.results, startIndex: 10)
-                        self.view?.success()
-                    } else {
-                        guard let error = error else { return }
-                        self.view?.failure(error: error)
-                    }
+                    self.view?.success()
                 }
+            } else {
+                guard let error = error else { return }
+                self.view?.failure(error: error)
+            }
         }
     }
 }
