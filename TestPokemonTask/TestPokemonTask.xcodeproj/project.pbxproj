@@ -146,30 +146,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E49112A029092D6E00628FAB /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				E49112A129092DA000628FAB /* DetailPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		E4A6D1B6290819BD00552568 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E4A6D1B7290819CC00552568 /* DetailViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E4A6D1BD29085E3E00552568 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E4A6D1BE29085E5100552568 /* PokemonDescriptionModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		E4A6D1C62908733900552568 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,26 +158,10 @@
 		E4DCB0302909C97A002E98CE /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
-				E4DCB0312909C993002E98CE /* View */,
-				E4DCB0322909C99D002E98CE /* Presenter */,
-			);
-			path = MainModule;
-			sourceTree = "<group>";
-		};
-		E4DCB0312909C993002E98CE /* View */ = {
-			isa = PBXGroup;
-			children = (
 				E4DCB0332909CA0D002E98CE /* MainViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E4DCB0322909C99D002E98CE /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				E4DCB035290A6A70002E98CE /* MainPresenter.swift */,
 			);
-			path = Presenter;
+			path = MainModule;
 			sourceTree = "<group>";
 		};
 		E4DF238A2908033100AE96AC = {
@@ -271,43 +231,19 @@
 		E4DF23CA2908045700AE96AC /* PokemonListModule */ = {
 			isa = PBXGroup;
 			children = (
-				E4DF23CB2908046D00AE96AC /* Model */,
-				E4DF23CC2908047300AE96AC /* View */,
-				E4DF23CD2908048500AE96AC /* Presenter */,
-			);
-			path = PokemonListModule;
-			sourceTree = "<group>";
-		};
-		E4DF23CB2908046D00AE96AC /* Model */ = {
-			isa = PBXGroup;
-			children = (
 				E4A6D1BB29085D4D00552568 /* AllPokemonsModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E4DF23CC2908047300AE96AC /* View */ = {
-			isa = PBXGroup;
-			children = (
 				E4DF239A2908033100AE96AC /* PokemonListViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E4DF23CD2908048500AE96AC /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				E4A6D1C42908680800552568 /* PokemonListPresenter.swift */,
 			);
-			path = Presenter;
+			path = PokemonListModule;
 			sourceTree = "<group>";
 		};
 		E4DF23CE290804BA00AE96AC /* DetailModule */ = {
 			isa = PBXGroup;
 			children = (
-				E4A6D1BD29085E3E00552568 /* Model */,
-				E4A6D1B6290819BD00552568 /* View */,
-				E49112A029092D6E00628FAB /* Presenter */,
+				E4A6D1BE29085E5100552568 /* PokemonDescriptionModel.swift */,
+				E4A6D1B7290819CC00552568 /* DetailViewController.swift */,
+				E49112A129092DA000628FAB /* DetailPresenter.swift */,
 			);
 			path = DetailModule;
 			sourceTree = "<group>";
