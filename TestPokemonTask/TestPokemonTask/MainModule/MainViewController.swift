@@ -64,15 +64,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.startCheckingConnection()
+        presenter.addNetworkObserver()
 
         setupViews()
         setConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        presenter.checkNetworkStatus()
+    deinit {
+        presenter.removeNetworkObserver()
     }
     
     private func setupViews() {
@@ -100,13 +99,13 @@ class MainViewController: UIViewController {
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func onlineMode() {
-        pokemonListButton.isEnabled = true
-        pokemonListButton.alpha = 1.0
+        self.pokemonListButton.isEnabled = true
+        self.pokemonListButton.alpha = 1.0
     }
     
     func offlineMode() {
-        loadFromStorageButton.isEnabled = true
-        loadFromStorageButton.alpha = 1.0
+        self.loadFromStorageButton.isEnabled = true
+        self.loadFromStorageButton.alpha = 1.0
     }
 }
 
