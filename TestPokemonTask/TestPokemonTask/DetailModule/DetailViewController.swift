@@ -217,7 +217,7 @@ extension DetailViewController: DetailViewProtocol {
     }
     
     func pokemonDescriptionFailure(error: Error) {
-        print(error.localizedDescription)
+        Log.error(error.localizedDescription, shouldLogContext: true)
     }
 }
 

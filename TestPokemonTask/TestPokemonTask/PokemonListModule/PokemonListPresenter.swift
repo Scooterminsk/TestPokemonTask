@@ -68,9 +68,7 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
                 }
             } else {
                 guard let error = error else { return }
-                DispatchQueue.main.async {
-                    self.view?.failure(error: error)
-                }
+                self.view?.failure(error: error)
             }
         }
     }
@@ -99,9 +97,7 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
                 }
             } else {
                 guard let error = error else { return }
-                DispatchQueue.main.async {
-                    self.view?.failure(error: error)
-                }
+                self.view?.failure(error: error)
             }
         }
     }

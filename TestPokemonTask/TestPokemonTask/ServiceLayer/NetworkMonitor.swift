@@ -31,9 +31,9 @@ class NetworkMonitor: NetworkMonitorProtocol {
             self.isReachable = (path.status == .satisfied) ? true : false
 
             if path.status == .satisfied {
-                print("We're connected!")
+                Log.info("We're connected!")
             } else {
-                print("No connection.")
+                Log.info("No connection.")
             }
         }
 

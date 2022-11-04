@@ -34,10 +34,13 @@ class NetworkDataFetch: NetworkDataFetchProtocol {
                     let pokemons = try JSONDecoder().decode(PokemonModel.self, from: data)
                     response(pokemons, nil)
                 } catch let jsonError {
-                    print("Failed to decode JSON", jsonError)
+                    Log.error("Failed to decode JSON: \(jsonError)",
+                              shouldLogContext: true)
+                    response(nil, jsonError)
                 }
             case .failure(let error):
-                print("Error received requesting data: \(error.localizedDescription)")
+                Log.error("Error received requesting data: \(error.localizedDescription)",
+                          shouldLogContext: true)
                 response(nil, error)
             }
         }
@@ -54,11 +57,13 @@ class NetworkDataFetch: NetworkDataFetchProtocol {
                     let pokemonDescription = try JSONDecoder().decode(PokemonDescriptionModel.self, from: data)
                     response(pokemonDescription, nil)
                 } catch let jsonError {
-                    print("Failed to decode JSON", jsonError)
+                    Log.error("Failed to decode JSON: \(jsonError)",
+                              shouldLogContext: true)
                     response(nil, jsonError)
                 }
             case .failure(let error):
-                print("Error received requesting data: \(error.localizedDescription)")
+                Log.error("Error received requesting data: \(error.localizedDescription)",
+                          shouldLogContext: true)
                 response(nil, error)
             }
         }

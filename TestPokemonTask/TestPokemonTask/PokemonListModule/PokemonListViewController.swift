@@ -99,7 +99,7 @@ extension PokemonListViewController: PokemonListViewProtocol {
     }
     
     func failure(error: Error) {
-        print(error.localizedDescription)
+        Log.error(error.localizedDescription, shouldLogContext: true)
     }
 }
 

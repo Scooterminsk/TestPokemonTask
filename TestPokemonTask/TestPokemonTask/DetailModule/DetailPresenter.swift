@@ -80,7 +80,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
                 DispatchQueue.main.async {
                     self.savePokemonDescriptionRealm(pokemon: pokemonDescriptionModel, id: self.id)
                     self.getPokemonImage(urlString: pokemonDescriptionModel.sprites.other?.home.front_default)
-                    print("SAVED")
+                    Log.info("SAVED")
                     self.view?.pokemonDescriptionSuccess()
                 }
             } else {
@@ -100,7 +100,8 @@ class DetailPresenter: DetailViewPresenterProtocol {
                     self.view?.setPokemonImage(imageData: data)
                 }
             case .failure(let error):
-                print("Error occured while trying to get a pokemon image", error.localizedDescription)
+                Log.error("Error occured while trying to get a pokemon image: \(error.localizedDescription)",
+                          shouldLogContext: true)
             }
         }
     }
