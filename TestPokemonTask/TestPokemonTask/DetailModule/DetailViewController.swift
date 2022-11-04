@@ -11,7 +11,7 @@ class DetailViewController: UIViewController {
 
     private let topImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "backgroundDetail")
+        imageView.image = R.image.backgroundDetail()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     private let pokemonImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.backgroundColor = .clear
-        imageView.image = UIImage(named: "unknown")
+        imageView.image = R.image.unknown()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +115,7 @@ class DetailViewController: UIViewController {
     
     private let pokeballImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "pokeball")
+        imageView.image = R.image.pokeball()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -188,7 +188,7 @@ extension DetailViewController: DetailViewProtocol {
     
     func setPokemonImage(imageData: Data?) {
         guard let data = imageData else {
-            pokemonImageView.image = UIImage(named: "unknown")
+            pokemonImageView.image = R.image.unknown()
             return
         }
         DispatchQueue.main.async {

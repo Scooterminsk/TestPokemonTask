@@ -62,7 +62,7 @@ extension PokemonListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonNameCell", for: indexPath)
         var content = cell.defaultContentConfiguration()
         let pokemon = presenter.pokemons?[indexPath.row]
-        cell.accessoryView = UIImageView(image: UIImage(named: "pokeball"))
+        cell.accessoryView = UIImageView(image: R.image.pokeball())
         content.text = pokemon?.name.capitalized
         cell.contentConfiguration = content
         return cell
