@@ -14,6 +14,10 @@ protocol NetworkMonitorProtocol {
     var isReachable: Bool { get set }
 }
 
+extension Notification.Name {
+    static let connectivityStatus = Notification.Name(rawValue: "connectivityStatusChanged")
+}
+
 class NetworkMonitor: NetworkMonitorProtocol {
     
     static let shared = NetworkMonitor()
@@ -35,6 +39,8 @@ class NetworkMonitor: NetworkMonitorProtocol {
             } else {
                 Log.info("No connection.")
             }
+            
+            NotificationCenter.default.post(name: .connectivityStatus, object: nil)
         }
 
         let queue = DispatchQueue(label: "NetworkMonitor")
