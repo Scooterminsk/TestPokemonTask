@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -70,10 +70,6 @@ class MainViewController: UIViewController {
         setConstraints()
     }
     
-    deinit {
-        presenter.removeNetworkObserver()
-    }
-    
     private func setupViews() {
         view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
@@ -101,11 +97,15 @@ extension MainViewController: MainViewProtocol {
     func onlineMode() {
         self.pokemonListButton.isEnabled = true
         self.pokemonListButton.alpha = 1.0
+        self.loadFromStorageButton.isEnabled = false
+        self.loadFromStorageButton.alpha = 0.6
     }
     
     func offlineMode() {
         self.loadFromStorageButton.isEnabled = true
         self.loadFromStorageButton.alpha = 1.0
+        self.pokemonListButton.isEnabled = false
+        self.pokemonListButton.alpha = 0.6
     }
 }
 

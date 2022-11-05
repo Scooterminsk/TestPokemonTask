@@ -24,7 +24,7 @@ protocol PokemonListPresenterProtocol: AnyObject {
     func getPokemonsPagination()
 }
 
-class PokemonListPresenter: PokemonListPresenterProtocol {
+final class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
     let networkFetchService: NetworkDataFetchProtocol!
     let networkMonitor: NetworkMonitorProtocol!
@@ -52,7 +52,9 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
     
     func getPokemons() {
         let pokemonsRealm = dbManager?.obtainPokemons()
-        if (pokemonsRealm ?? [PokemonModelRealm]()).count > 0 {
+        if networkMonitor.isConnected {
+            getPokemonsFromAPI()
+        } else if (pokemonsRealm ?? [PokemonModelRealm]()).count > 0 {
             var allPokemons = [Pokemon]()
             for pokemon in pokemonsRealm ?? [PokemonModelRealm]() {
                 let currentPokemon = Pokemon(name: pokemon.name, url: pokemon.url)
@@ -60,9 +62,6 @@ class PokemonListPresenter: PokemonListPresenterProtocol {
             }
             self.pokemons = allPokemons
             self.view?.success()
-            return
-        } else {
-            getPokemonsFromAPI()
         }
     }
     

@@ -12,7 +12,7 @@ protocol NetworkRequestProtocol {
     init(urlSessionObject: URLSession)
 }
 
-class NetworkRequest: NetworkRequestProtocol {
+final class NetworkRequest: NetworkRequestProtocol {
     var urlSessionObject: URLSession?
     
     required init(urlSessionObject: URLSession) {

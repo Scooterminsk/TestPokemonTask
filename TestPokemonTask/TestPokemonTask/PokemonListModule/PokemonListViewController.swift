@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonListViewController: UIViewController {
+final class PokemonListViewController: UIViewController {
     
     private let pokemonNamesTableView: UITableView = {
        let tableView = UITableView()
@@ -55,7 +55,13 @@ class PokemonListViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension PokemonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.pokemons?.count ?? 0
+        let pokemons = presenter.pokemons
+        if pokemons?.count ?? 0 == 0 {
+            self.pokemonNamesTableView.setEmptyMessage("There are no saved Pokemons")
+        } else {
+            self.pokemonNamesTableView.restore()
+        }
+        return pokemons?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

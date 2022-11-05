@@ -10,8 +10,10 @@ import UIKit
 
 extension UIViewController {
     func alertNoNetworkAndCache() {
-        let alert = UIAlertController(title: "No internet connection", message: "You can continue to use the application if you already have downloaded Pokemons", preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "OK", style: .default)
+        let alert = UIAlertController(title: "Oh, internet connection status has changed", message: "You will be moved to the main screen", preferredStyle: .alert)
+        let actionOK = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        })
         alert.addAction(actionOK)
         present(alert, animated: true)
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     private let topImageView: UIImageView = {
        let imageView = UIImageView()
@@ -32,6 +32,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .center
+        label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         label.text = "Pokemon not saved"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +73,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
+        label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -91,6 +93,7 @@ class DetailViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textAlignment = .center
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -109,6 +112,7 @@ class DetailViewController: UIViewController {
         let label = UILabel()
          label.font = .systemFont(ofSize: 18)
          label.textAlignment = .center
+         label.textColor = .black
          label.translatesAutoresizingMaskIntoConstraints = false
          return label
     }()

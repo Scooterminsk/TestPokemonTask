@@ -18,7 +18,7 @@ protocol RouterProtocol: RouterMain {
     func showDetails(pokemon: Pokemon, id: Int?)
 }
 
-class Router: RouterProtocol {
+final class Router: RouterProtocol {
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
     

@@ -13,7 +13,7 @@ protocol AssemblyBuilderProtocol {
     func createDetailModule(pokemon: Pokemon?, id: Int?, router: RouterProtocol) -> UIViewController
 }
 
-class AssemblyModuleBuilder: AssemblyBuilderProtocol {
+final class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
     func createMainModule(router: RouterProtocol) -> UIViewController {
         let view = MainViewController()
