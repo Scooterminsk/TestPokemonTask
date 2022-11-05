@@ -10,6 +10,7 @@
 		25404872B34A2833F3AE11D6 /* Pods_TestPokemonTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55CBC55E0F2034023E634AC /* Pods_TestPokemonTaskTests.framework */; };
 		4D27147CF199F360BF246A8D /* Pods_TestPokemonTask_TestPokemonTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40676F5318960C5A29E09397 /* Pods_TestPokemonTask_TestPokemonTaskUITests.framework */; };
 		9BC62ADDBF7A39D6629BB127 /* Pods_TestPokemonTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA95E69D454AA271EE95BB8 /* Pods_TestPokemonTask.framework */; };
+		E40EF0A429168E830025C7E0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EF0A329168E830025C7E0 /* File.swift */; };
 		E49112A229092DA000628FAB /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A129092DA000628FAB /* DetailPresenter.swift */; };
 		E49112A429098F0700628FAB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A329098F0700628FAB /* Router.swift */; };
 		E49112A62909C73600628FAB /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49112A52909C73600628FAB /* NetworkMonitor.swift */; };
@@ -65,6 +66,7 @@
 		991E82BD3B175CB71F28A671 /* Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask-TestPokemonTaskUITests/Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A071F19B4416BC5CD74D0DF9 /* Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask-TestPokemonTaskUITests/Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BCA95E69D454AA271EE95BB8 /* Pods_TestPokemonTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40EF0A329168E830025C7E0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E49112A129092DA000628FAB /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		E49112A329098F0700628FAB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E49112A52909C73600628FAB /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			children = (
 				E4A6D1B32908189100552568 /* UIStackView + Extension.swift */,
 				E4F45502290AC01B00E10B4A /* UIViewController + Extension.swift */,
+				E40EF0A329168E830025C7E0 /* File.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				E4A6D1BC29085D4D00552568 /* AllPokemonsModel.swift in Sources */,
 				E4A6D1C52908680800552568 /* PokemonListPresenter.swift in Sources */,
 				E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */,
+				E40EF0A429168E830025C7E0 /* File.swift in Sources */,
 				E4A6D1B8290819CC00552568 /* DetailViewController.swift in Sources */,
 				E4A6D1B42908189100552568 /* UIStackView + Extension.swift in Sources */,
 				E4DCB0342909CA0D002E98CE /* MainViewController.swift in Sources */,
