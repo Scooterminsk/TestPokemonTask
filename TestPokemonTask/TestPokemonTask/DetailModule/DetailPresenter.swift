@@ -61,7 +61,9 @@ class DetailPresenter: DetailViewPresenterProtocol {
     }
     
     public func getPokemonDescription() {
-        if let id = id {
+        if networkMonitor.isConnected {
+            getPokemonDescriptionFromAPI()
+        } else if let id = id {
             let pokemonDescriptionRealm = dbManager?.obtainPokemonDescription(primaryKey: id)
             if let pokemonDescriptionRealm = pokemonDescriptionRealm {
                 view?.pokemonDescriptionSuccessRealm(name: pokemonDescriptionRealm.name,
@@ -69,8 +71,6 @@ class DetailPresenter: DetailViewPresenterProtocol {
                                                      weight: pokemonDescriptionRealm.weight,
                                                      types: pokemonDescriptionRealm.types)
                 view?.setPokemonImage(imageData: pokemonDescriptionRealm.image)
-            } else {
-                getPokemonDescriptionFromAPI()
             }
         }
     }
@@ -84,7 +84,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
                 DispatchQueue.main.async {
                     self.savePokemonDescriptionRealm(pokemon: pokemonDescriptionModel, id: self.id)
                     self.getPokemonImage(urlString: pokemonDescriptionModel.sprites.other?.home.front_default)
-                    Log.info("SAVED")
+                    Log.info("Pokemon description SAVED")
                     self.view?.pokemonDescriptionSuccess()
                 }
             } else {

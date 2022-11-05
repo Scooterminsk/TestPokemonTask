@@ -21,13 +21,13 @@ class DBManager: DBManagerProtocol {
     
     @MainActor func save(pokemonModel: PokemonModelRealm) {
         try! mainRealm.write {
-            mainRealm.add(pokemonModel)
+            mainRealm.add(pokemonModel, update: .all)
         }
     }
     
     @MainActor func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
         try! mainRealm.write {
-            mainRealm.add(pokemonDescriptionModel)
+            mainRealm.add(pokemonDescriptionModel, update: .all)
         }
     }
     

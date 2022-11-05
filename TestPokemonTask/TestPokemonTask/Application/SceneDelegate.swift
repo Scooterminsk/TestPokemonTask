@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let manager = DBManager()
-        manager.deleteAllPokemonDescriptions()
-        manager.deleteAllPokemons()
+//        let manager = DBManager()
+//        manager.deleteAllPokemonDescriptions()
+//        manager.deleteAllPokemons()
 
         let navigationViewController = UINavigationController()
         let assemblyModuleBuilder = AssemblyModuleBuilder()
