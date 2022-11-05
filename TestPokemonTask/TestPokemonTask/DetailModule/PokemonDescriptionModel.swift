@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonDescriptionModel: Codable {
+struct PokemonDescriptionModel: Decodable {
     let height: Int
     let name: String
     let types: [TypeElement]
@@ -15,24 +15,26 @@ struct PokemonDescriptionModel: Codable {
     let sprites: Sprites
 }
 
-struct TypeElement: Codable {
-    let slot: Int
-    let type: Species
-}
+extension PokemonDescriptionModel {
+    struct TypeElement: Decodable {
+        let slot: Int
+        let type: Species
+    }
 
-struct Species: Codable {
-    let name: String
-    let url: String
-}
+    struct Species: Decodable {
+        let name: String
+        let url: String
+    }
 
-struct Sprites: Codable {
-    let other: Other?
-}
+    struct Sprites: Decodable {
+        let other: Other?
+    }
 
-struct Other: Codable {
-    let home: Home
-}
+    struct Other: Decodable {
+        let home: Home
+    }
 
-struct Home: Codable {
-    let front_default: String
+    struct Home: Decodable {
+        let front_default: String
+    }
 }
