@@ -16,7 +16,7 @@ protocol DBManagerProtocol {
     func updatePokemonsImage(id: Int?, imageData: Data?)
 }
 
-class DBManager: DBManagerProtocol {
+final class DBManager: DBManagerProtocol {
     fileprivate lazy var mainRealm = try! Realm(configuration: .defaultConfiguration)
     
     @MainActor func save(pokemonModel: PokemonModelRealm) {

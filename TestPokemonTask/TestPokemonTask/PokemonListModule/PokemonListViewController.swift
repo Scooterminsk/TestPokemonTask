@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonListViewController: UIViewController {
+final class PokemonListViewController: UIViewController {
     
     private let pokemonNamesTableView: UITableView = {
        let tableView = UITableView()

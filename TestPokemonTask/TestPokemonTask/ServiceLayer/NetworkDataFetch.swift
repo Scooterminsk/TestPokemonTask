@@ -13,7 +13,7 @@ protocol NetworkDataFetchProtocol {
     func fetchPokemonDescription(urlString: String, response: @escaping (PokemonDescriptionModel?, Error?) -> Void)
 }
 
-class NetworkDataFetch: NetworkDataFetchProtocol {
+final class NetworkDataFetch: NetworkDataFetchProtocol {
     var networkRequestService: NetworkRequestProtocol?
     
     required init(networkRequestService: NetworkRequestProtocol) {

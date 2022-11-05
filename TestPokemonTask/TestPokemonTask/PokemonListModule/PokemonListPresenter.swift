@@ -24,7 +24,7 @@ protocol PokemonListPresenterProtocol: AnyObject {
     func getPokemonsPagination()
 }
 
-class PokemonListPresenter: PokemonListPresenterProtocol {
+final class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
     let networkFetchService: NetworkDataFetchProtocol!
     let networkMonitor: NetworkMonitorProtocol!

@@ -31,7 +31,7 @@ protocol DetailViewPresenterProtocol: AnyObject {
     var pokemonDescription: PokemonDescriptionModel? { get set }
 }
 
-class DetailPresenter: DetailViewPresenterProtocol {
+final class DetailPresenter: DetailViewPresenterProtocol {
     weak var view: DetailViewProtocol?
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!

@@ -19,10 +19,9 @@ protocol MainPresenterProtocol: AnyObject {
     func toPokemons()
     func startCheckingConnection()
     func addNetworkObserver()
-    func removeNetworkObserver()
 }
 
-class MainPresenter: MainPresenterProtocol {
+final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
     let networkMonitor: NetworkMonitorProtocol!
     var router: RouterProtocol?
@@ -59,10 +58,6 @@ class MainPresenter: MainPresenterProtocol {
                 self.view?.offlineMode()
             }
         }
-    }
-    
-    func removeNetworkObserver() {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.connectivityStatus, object: nil)
     }
 }
 
