@@ -39,8 +39,6 @@ final class NetworkMonitor: NetworkMonitorProtocol {
             
             NotificationCenter.default.post(name: .connectivityStatus, object: nil)
         }
-
-        
         monitor.start(queue: queue)
     }
 
