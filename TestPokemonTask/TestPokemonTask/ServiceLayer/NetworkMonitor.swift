@@ -34,7 +34,7 @@ final class NetworkMonitor: NetworkMonitorProtocol {
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }
-            self.isConnected = path.status != .unsatisfied
+            self.isConnected = path.status == .satisfied
             self.isExpensive = path.isExpensive
             
             NotificationCenter.default.post(name: .connectivityStatus, object: nil)

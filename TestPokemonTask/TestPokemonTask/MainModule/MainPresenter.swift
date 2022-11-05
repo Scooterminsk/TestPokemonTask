@@ -51,6 +51,7 @@ class MainPresenter: MainPresenterProtocol {
             DispatchQueue.main.async {
                 self.view?.onlineMode()
             }
+            return
         } else {
             Log.info("Not connected.")
             DispatchQueue.main.async {
