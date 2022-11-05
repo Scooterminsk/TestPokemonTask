@@ -33,7 +33,6 @@ class NetworkMonitorSpy: NetworkMonitorProtocol {
     var isMonitoringStarted = false
 
     var isConnected: Bool {
-        NotificationCenter.default.post(name: .connectivityStatus, object: nil)
         isConnectedCalled = true
         return true
     }
@@ -50,7 +49,6 @@ class NetworkMonitorNotConnectedDummy: NetworkMonitorProtocol {
     func stopMonitoring() {}
     
     var isConnected: Bool {
-        NotificationCenter.default.post(name: .connectivityStatus, object: nil)
         return false
     }
 }
@@ -82,17 +80,46 @@ final class MainPresenterTest: XCTestCase {
         XCTAssertTrue(networkMonitor.isMonitoringStarted)
     }
     
-    func testOnlineModeCalled() throws {
+    func testshowOfflineDeviceUI_didOnlineModeCalled() throws {
         let view = ViewSpy()
         let networkMonitor = NetworkMonitorSpy()
+        let expectation = expectation(forNotification: .connectivityStatus,
+                                      object: nil,
+                                      handler: nil)
         
         presenter = MainPresenter(view: view, networkMonitor: networkMonitor, router: router)
         
-        presenter.addNetworkObserver()
+        presenter.showOfflineDeviceUI(notification: Notification(name: .connectivityStatus))
+            
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            expectation.fulfill()
+        }
+            
+        waitForExpectations(timeout: 5, handler: nil)
         
         XCTAssertTrue(view.didOnlineModeCalled)
         
     }
 
+    func testshowOfflineDeviceUI_didOfflineModeCalled() throws {
+        let view = ViewSpy()
+        let networkMonitor = NetworkMonitorNotConnectedDummy()
+        let expectation = expectation(forNotification: .connectivityStatus,
+                                      object: nil,
+                                      handler: nil)
+        
+        presenter = MainPresenter(view: view, networkMonitor: networkMonitor, router: router)
+        
+        presenter.showOfflineDeviceUI(notification: Notification(name: .connectivityStatus))
+            
+        DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            expectation.fulfill()
+        }
+            
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        XCTAssertTrue(view.didOfflineModeCalled)
+        
+    }
 
 }
