@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonDescriptionModel: Decodable, Equatable {
+struct PokemonDescriptionModel: Codable, Equatable {
     let height: Int
     let name: String
     let types: [TypeElement]
@@ -16,25 +16,25 @@ struct PokemonDescriptionModel: Decodable, Equatable {
 }
 
 extension PokemonDescriptionModel {
-    struct TypeElement: Decodable, Equatable {
+    struct TypeElement: Codable, Equatable {
         let slot: Int
         let type: Species
     }
 
-    struct Species: Decodable, Equatable {
+    struct Species: Codable, Equatable {
         let name: String
         let url: String
     }
 
-    struct Sprites: Decodable, Equatable {
+    struct Sprites: Codable, Equatable {
         let other: Other?
     }
 
-    struct Other: Decodable, Equatable {
+    struct Other: Codable, Equatable {
         let home: Home
     }
 
-    struct Home: Decodable, Equatable {
+    struct Home: Codable, Equatable {
         let front_default: String
     }
 }
