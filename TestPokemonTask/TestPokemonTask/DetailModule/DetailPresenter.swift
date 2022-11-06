@@ -14,7 +14,7 @@ protocol DetailViewProtocol: AnyObject {
     func setPokemonImage(imageData: Data?)
 }
 
-protocol DetailViewPresenterProtocol: AnyObject {
+protocol DetailPresenterProtocol: AnyObject {
     init(view: DetailViewProtocol,
          networkRequestService: NetworkRequestProtocol,
          networkFetchService: NetworkDataFetchProtocol,
@@ -29,9 +29,12 @@ protocol DetailViewPresenterProtocol: AnyObject {
     var dbManager: DBManagerProtocol? { get set }
     var id: Int? { get set }
     var pokemonDescription: PokemonDescriptionModel? { get set }
+    func savePokemonDescriptionRealm(pokemon: PokemonDescriptionModel?, id: Int?)
+    func getPokemonDescriptionFromAPI()
+    func getPokemonImage(urlString: String?)
 }
 
-final class DetailPresenter: DetailViewPresenterProtocol {
+final class DetailPresenter: DetailPresenterProtocol {
     weak var view: DetailViewProtocol?
     let networkRequestService: NetworkRequestProtocol!
     let networkFetchService: NetworkDataFetchProtocol!
@@ -75,7 +78,7 @@ final class DetailPresenter: DetailViewPresenterProtocol {
         }
     }
     
-    private func getPokemonDescriptionFromAPI() {
+    func getPokemonDescriptionFromAPI() {
         networkFetchService.fetchPokemonDescription(urlString: pokemon?.url ?? "") { [weak self] pokemonDescriptionModel, error in
             guard let self = self else { return }
             if error == nil {
@@ -94,7 +97,7 @@ final class DetailPresenter: DetailViewPresenterProtocol {
         }
     }
     
-    private func getPokemonImage(urlString: String?) {
+    func getPokemonImage(urlString: String?) {
         guard let urlString = urlString else { return }
         networkRequestService.requestData(urlString: urlString) { [weak self] result in
             guard let self = self else { return }
@@ -110,7 +113,7 @@ final class DetailPresenter: DetailViewPresenterProtocol {
         }
     }
     
-    private func savePokemonDescriptionRealm(pokemon: PokemonDescriptionModel?, id: Int?) {
+    func savePokemonDescriptionRealm(pokemon: PokemonDescriptionModel?, id: Int?) {
         guard let pokemon = pokemon,
               let id = id else { return }
         let pokemonDescriptionRealm = PokemonDescriptionModelRealm()

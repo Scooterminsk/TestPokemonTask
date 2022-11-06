@@ -132,7 +132,7 @@ final class DetailViewController: UIViewController {
     private var heightStackView = UIStackView()
     private var parametersStackView = UIStackView()
     
-    var presenter: DetailViewPresenterProtocol!
+    var presenter: DetailPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
