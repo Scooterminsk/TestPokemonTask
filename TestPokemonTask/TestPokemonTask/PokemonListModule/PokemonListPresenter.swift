@@ -22,6 +22,8 @@ protocol PokemonListPresenterProtocol: AnyObject {
     var pokemons: [Pokemon]? { get set }
     func tapOnPokemonsName(pokemon: Pokemon?, id: Int?)
     func getPokemonsPagination()
+    func getPokemonsFromAPI()
+    func savePokemonsRealm(pokemons: [Pokemon], startIndex: Int)
 }
 
 final class PokemonListPresenter: PokemonListPresenterProtocol {
@@ -65,7 +67,7 @@ final class PokemonListPresenter: PokemonListPresenterProtocol {
         }
     }
     
-    private func getPokemonsFromAPI() {
+    func getPokemonsFromAPI() {
         networkFetchService.fetchPokemons(pagination: false) { [weak self] pokemonModel, error in
             guard let self = self else { return }
             if error == nil {
@@ -82,7 +84,7 @@ final class PokemonListPresenter: PokemonListPresenterProtocol {
         }
     }
     
-    private func savePokemonsRealm(pokemons: [Pokemon], startIndex: Int) {
+    func savePokemonsRealm(pokemons: [Pokemon], startIndex: Int) {
         var index = startIndex
         for pokemon in pokemons {
             let pokemonRealm = PokemonModelRealm()
