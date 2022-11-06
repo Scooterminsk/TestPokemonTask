@@ -8,7 +8,7 @@
 import XCTest
 @testable import TestPokemonTask
 
-class ViewSpy: MainViewProtocol {
+class MainViewSpy: MainViewProtocol {
     
     var didOnlineModeCalled = false
     var didOfflineModeCalled = false
@@ -70,7 +70,7 @@ final class MainPresenterTest: XCTestCase {
     }
 
     func testStartCheckingConnection() throws {
-        let view = ViewSpy()
+        let view = MainViewSpy()
         let networkMonitor = NetworkMonitorSpy()
         
         presenter = MainPresenter(view: view, networkMonitor: networkMonitor, router: router)
@@ -81,7 +81,7 @@ final class MainPresenterTest: XCTestCase {
     }
     
     func testshowOfflineDeviceUI_didOnlineModeCalled() throws {
-        let view = ViewSpy()
+        let view = MainViewSpy()
         let networkMonitor = NetworkMonitorSpy()
         let expectation = expectation(forNotification: .connectivityStatus,
                                       object: nil,
@@ -102,7 +102,7 @@ final class MainPresenterTest: XCTestCase {
     }
 
     func testshowOfflineDeviceUI_didOfflineModeCalled() throws {
-        let view = ViewSpy()
+        let view = MainViewSpy()
         let networkMonitor = NetworkMonitorNotConnectedDummy()
         let expectation = expectation(forNotification: .connectivityStatus,
                                       object: nil,
