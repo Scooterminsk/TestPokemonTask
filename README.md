@@ -22,7 +22,7 @@ After clicking on a table view cell, the user is taken to a screen with detailed
 
 <br />
 
-Internet connection is checked on the start screen. If it is missing, then an alert appears that warns that the application will be offline. The user can continue in offline mode, the button is activated.
+Internet connection is checked on the start screen. If it is missing, then an alert appears that warns that the application will be offline. The user can continue in offline mode, the button is activated and user will be popped to the main screen.
 
 <body>
   <p>
