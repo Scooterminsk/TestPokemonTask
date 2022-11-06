@@ -9,6 +9,7 @@ import XCTest
 @testable import TestPokemonTask
 
 class MockNetworkRequest: NetworkRequestProtocol {
+    
     var urlSessionObject: URLSession?
     var simpleData: Data?
     var didErrorCatched = false
