@@ -26,7 +26,7 @@ Internet connection is checked on the start screen. If it is missing, then an al
 
 <body>
   <p>
-    <img src="https://raw.githubusercontent.com/Scooterminsk/TestPokemonTask/main/Screenshots/NoNetworkCase.png" alt="No network case" style="height: 800px;">
+    <img src="https://raw.githubusercontent.com/Scooterminsk/TestPokemonTask/dev/Screenshots/NoNetworkCaseNew.png" alt="No network case" style="height: 800px;">
     <img src="https://raw.githubusercontent.com/Scooterminsk/TestPokemonTask/main/Screenshots/OfflineMode.png" alt="Offline mode" style="height: 800px;">
   </p>
  </body>
