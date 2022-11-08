@@ -26,7 +26,7 @@ protocol DetailPresenterProtocol: AnyObject {
     
     func getPokemonDescription()
     var pokemon: Pokemon? { get set }
-    var dbManager: DBManagerProtocol? { get set }
+    var dbManager: DBManagerProtocol { get set }
     var id: Int? { get set }
     var pokemonDescription: PokemonDescriptionModel? { get set }
     func savePokemonDescriptionRealm(pokemon: PokemonDescriptionModel?, id: Int?)
@@ -36,11 +36,11 @@ protocol DetailPresenterProtocol: AnyObject {
 
 final class DetailPresenter: DetailPresenterProtocol {
     weak var view: DetailViewProtocol?
-    let networkRequestService: NetworkRequestProtocol!
-    let networkFetchService: NetworkDataFetchProtocol!
-    let networkMonitor: NetworkMonitorProtocol!
-    var router: RouterProtocol?
-    var dbManager: DBManagerProtocol?
+    let networkRequestService: NetworkRequestProtocol
+    let networkFetchService: NetworkDataFetchProtocol
+    let networkMonitor: NetworkMonitorProtocol
+    var router: RouterProtocol
+    var dbManager: DBManagerProtocol
     var pokemon: Pokemon?
     var id: Int?
     var pokemonDescription: PokemonDescriptionModel?
@@ -67,7 +67,7 @@ final class DetailPresenter: DetailPresenterProtocol {
         if networkMonitor.isConnected {
             getPokemonDescriptionFromAPI()
         } else if let id = id {
-            let pokemonDescriptionRealm = dbManager?.obtainPokemonDescription(primaryKey: id)
+            let pokemonDescriptionRealm = dbManager.obtainPokemonDescription(primaryKey: id)
             if let pokemonDescriptionRealm = pokemonDescriptionRealm {
                 view?.pokemonDescriptionSuccessRealm(name: pokemonDescriptionRealm.name,
                                                      height: pokemonDescriptionRealm.height,
@@ -122,6 +122,6 @@ final class DetailPresenter: DetailPresenterProtocol {
         pokemonDescriptionRealm.name = pokemon.name
         pokemonDescriptionRealm.types = pokemon.types.map{$0.type.name.capitalized}.joined(separator: ", ")
         pokemonDescriptionRealm.weight = pokemon.weight
-        dbManager?.save(pokemonDescriptionModel: pokemonDescriptionRealm)
+        dbManager.save(pokemonDescriptionModel: pokemonDescriptionRealm)
     }
 }

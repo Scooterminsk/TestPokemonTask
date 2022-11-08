@@ -28,11 +28,11 @@ protocol PokemonListPresenterProtocol: AnyObject {
 
 final class PokemonListPresenter: PokemonListPresenterProtocol {
     weak var view: PokemonListViewProtocol?
-    let networkFetchService: NetworkDataFetchProtocol!
-    let networkMonitor: NetworkMonitorProtocol!
-    var router: RouterProtocol?
+    let networkFetchService: NetworkDataFetchProtocol
+    let networkMonitor: NetworkMonitorProtocol
+    var router: RouterProtocol
     var pokemons: [Pokemon]?
-    var dbManager: DBManagerProtocol?
+    var dbManager: DBManagerProtocol
     
     required init(view: PokemonListViewProtocol,
                   networkFetchService: NetworkDataFetchProtocol,
@@ -49,16 +49,16 @@ final class PokemonListPresenter: PokemonListPresenterProtocol {
     
     func tapOnPokemonsName(pokemon: Pokemon?, id: Int?) {
         guard let pokemon = pokemon else { return }
-        router?.showDetails(pokemon: pokemon, id: id)
+        router.showDetails(pokemon: pokemon, id: id)
     }
     
     func getPokemons() {
-        let pokemonsRealm = dbManager?.obtainPokemons()
+        let pokemonsRealm = dbManager.obtainPokemons()
         if networkMonitor.isConnected {
             getPokemonsFromAPI()
-        } else if (pokemonsRealm ?? [PokemonModelRealm]()).count > 0 {
+        } else if (pokemonsRealm).count > 0 {
             var allPokemons = [Pokemon]()
-            for pokemon in pokemonsRealm ?? [PokemonModelRealm]() {
+            for pokemon in pokemonsRealm {
                 let currentPokemon = Pokemon(name: pokemon.name, url: pokemon.url)
                 allPokemons.append(currentPokemon)
             }
@@ -91,7 +91,7 @@ final class PokemonListPresenter: PokemonListPresenterProtocol {
             pokemonRealm.name = pokemon.name
             pokemonRealm.url = pokemon.url
             pokemonRealm.id = index
-            dbManager?.save(pokemonModel: pokemonRealm)
+            dbManager.save(pokemonModel: pokemonRealm)
             index += 1
         }
     }

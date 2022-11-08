@@ -197,7 +197,7 @@ extension DetailViewController: DetailViewProtocol {
         }
         DispatchQueue.main.async {
             self.pokemonImageView.image = UIImage(data: data)
-            self.presenter.dbManager?.updatePokemonsImage(id: self.presenter.id, imageData: data)
+            self.presenter.dbManager.updatePokemonsImage(id: self.presenter.id, imageData: data)
         }
     }
     
