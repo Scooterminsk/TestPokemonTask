@@ -17,52 +17,100 @@ protocol DBManagerProtocol {
 }
 
 final class DBManager: DBManagerProtocol {
-    fileprivate lazy var mainRealm = try! Realm(configuration: .defaultConfiguration)
     
-    @MainActor func save(pokemonModel: PokemonModelRealm) {
-        try! mainRealm.write {
-            mainRealm.add(pokemonModel, update: .all)
+    private enum ServiceError: Error {
+        case internalErrorConnection
+        case internalErrorCantWrite
+        case internalErrorCantDelete
+    }
+    
+    fileprivate var mainRealm: Realm {
+        do {
+            let realm = try Realm(configuration: .defaultConfiguration)
+            return realm
+        } catch ServiceError.internalErrorConnection {
+            Log.error("Could not access database", shouldLogContext: true)
+        } catch {
+            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+        }
+        return self.mainRealm
+    }
+    
+    func save(pokemonModel: PokemonModelRealm) {
+        do {
+            try mainRealm.write {
+                mainRealm.add(pokemonModel, update: .all)
+            }
+        } catch ServiceError.internalErrorCantWrite {
+            Log.error("Could not write to database", shouldLogContext: true)
+        } catch {
+            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+        }
+        
+    }
+    
+    func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
+        do {
+            try mainRealm.write {
+                mainRealm.add(pokemonDescriptionModel, update: .all)
+            }
+        } catch ServiceError.internalErrorCantWrite {
+            Log.error("Could not write to database", shouldLogContext: true)
+        } catch {
+            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
     
-    @MainActor func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
-        try! mainRealm.write {
-            mainRealm.add(pokemonDescriptionModel, update: .all)
-        }
-    }
-    
-    @MainActor func obtainPokemons() -> [PokemonModelRealm] {
+    func obtainPokemons() -> [PokemonModelRealm] {
         let model = mainRealm.objects(PokemonModelRealm.self)
         return Array(model).sorted { $0.id < $1.id }
     }
     
-    @MainActor func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
+    func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
         let model = mainRealm.object(ofType: PokemonDescriptionModelRealm.self, forPrimaryKey: primaryKey)
         return model
     }
     
-    @MainActor func updatePokemonsImage(id: Int?, imageData: Data?) {
+    func updatePokemonsImage(id: Int?, imageData: Data?) {
         guard let id = id,
               let imageData = imageData else { return }
         
         if let pokemonDescription = mainRealm.object(ofType: PokemonDescriptionModelRealm.self, forPrimaryKey: id) {
-            try! mainRealm.write {
-                pokemonDescription.image = imageData
+            do {
+                try mainRealm.write {
+                    pokemonDescription.image = imageData
+                }
+            } catch ServiceError.internalErrorCantWrite {
+                Log.error("Could not write to database", shouldLogContext: true)
+            } catch {
+                Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
             }
         }
     }
     
-    @MainActor func deleteAllPokemons() {
-        try! mainRealm.write {
-            let allPokemons = mainRealm.objects(PokemonModelRealm.self)
-            mainRealm.delete(allPokemons)
+    func deleteAllPokemons() {
+        do {
+            try mainRealm.write {
+                let allPokemons = mainRealm.objects(PokemonModelRealm.self)
+                mainRealm.delete(allPokemons)
+            }
+        } catch ServiceError.internalErrorCantDelete {
+            Log.error("Could not delete from database", shouldLogContext: true)
+        } catch {
+            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
     
-    @MainActor func deleteAllPokemonDescriptions() {
-        try! mainRealm.write {
-            let allPokemonDescriptions = mainRealm.objects(PokemonDescriptionModelRealm.self)
-            mainRealm.delete(allPokemonDescriptions)
+    func deleteAllPokemonDescriptions() {
+        do {
+            try mainRealm.write {
+                let allPokemonDescriptions = mainRealm.objects(PokemonDescriptionModelRealm.self)
+                mainRealm.delete(allPokemonDescriptions)
+            }
+        } catch ServiceError.internalErrorCantDelete {
+            Log.error("Could not delete from database", shouldLogContext: true)
+        } catch {
+            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
 }

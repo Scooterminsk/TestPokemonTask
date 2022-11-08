@@ -23,8 +23,8 @@ protocol MainPresenterProtocol: AnyObject {
 
 final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
-    let networkMonitor: NetworkMonitorProtocol!
-    var router: RouterProtocol?
+    let networkMonitor: NetworkMonitorProtocol
+    var router: RouterProtocol
     
     required init(view: MainViewProtocol, networkMonitor: NetworkMonitorProtocol, router: RouterProtocol) {
         self.view = view
@@ -33,7 +33,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func toPokemons() {
-        router?.showPokemonsList()
+        router.showPokemonsList()
     }
     
     func startCheckingConnection() {
