@@ -19,29 +19,29 @@ protocol DBManagerProtocol {
 final class DBManager: DBManagerProtocol {
     fileprivate lazy var mainRealm = try! Realm(configuration: .defaultConfiguration)
     
-    @MainActor func save(pokemonModel: PokemonModelRealm) {
+    func save(pokemonModel: PokemonModelRealm) {
         try! mainRealm.write {
             mainRealm.add(pokemonModel, update: .all)
         }
     }
     
-    @MainActor func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
+    func save(pokemonDescriptionModel: PokemonDescriptionModelRealm) {
         try! mainRealm.write {
             mainRealm.add(pokemonDescriptionModel, update: .all)
         }
     }
     
-    @MainActor func obtainPokemons() -> [PokemonModelRealm] {
+    func obtainPokemons() -> [PokemonModelRealm] {
         let model = mainRealm.objects(PokemonModelRealm.self)
         return Array(model).sorted { $0.id < $1.id }
     }
     
-    @MainActor func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
+    func obtainPokemonDescription(primaryKey: Int) -> PokemonDescriptionModelRealm? {
         let model = mainRealm.object(ofType: PokemonDescriptionModelRealm.self, forPrimaryKey: primaryKey)
         return model
     }
     
-    @MainActor func updatePokemonsImage(id: Int?, imageData: Data?) {
+    func updatePokemonsImage(id: Int?, imageData: Data?) {
         guard let id = id,
               let imageData = imageData else { return }
         
@@ -52,14 +52,14 @@ final class DBManager: DBManagerProtocol {
         }
     }
     
-    @MainActor func deleteAllPokemons() {
+    func deleteAllPokemons() {
         try! mainRealm.write {
             let allPokemons = mainRealm.objects(PokemonModelRealm.self)
             mainRealm.delete(allPokemons)
         }
     }
     
-    @MainActor func deleteAllPokemonDescriptions() {
+    func deleteAllPokemonDescriptions() {
         try! mainRealm.write {
             let allPokemonDescriptions = mainRealm.objects(PokemonDescriptionModelRealm.self)
             mainRealm.delete(allPokemonDescriptions)
