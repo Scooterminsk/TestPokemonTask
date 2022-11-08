@@ -16,10 +16,4 @@ target 'TestPokemonTask' do
     pod 'R.swift'
   end
 
-  target 'TestPokemonTaskUITests' do
-    # Pods for testing
-    pod 'RealmSwift', '~>10'
-    pod 'R.swift'
-  end
-
 end

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25404872B34A2833F3AE11D6 /* Pods_TestPokemonTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55CBC55E0F2034023E634AC /* Pods_TestPokemonTaskTests.framework */; };
-		9BC62ADDBF7A39D6629BB127 /* Pods_TestPokemonTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA95E69D454AA271EE95BB8 /* Pods_TestPokemonTask.framework */; };
+		C6131C1A7846DEE919BF8EDF /* Pods_TestPokemonTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0CD140E6F03F070C8BFB87 /* Pods_TestPokemonTaskTests.framework */; };
+		DAEFF1F9196D4B5F41984F68 /* Pods_TestPokemonTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B7594F00FCE22B4345EF45 /* Pods_TestPokemonTask.framework */; };
 		E40EF0A429168E830025C7E0 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EF0A329168E830025C7E0 /* UITableView + Extension.swift */; };
 		E40EF0A62916A3290025C7E0 /* RouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EF0A52916A3290025C7E0 /* RouterTest.swift */; };
 		E413B80329170F5700F02090 /* PokemonListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E413B80229170F5700F02090 /* PokemonListPresenterTests.swift */; };
@@ -53,14 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B44CCEA412CE1B98778A6FA /* Pods-TestPokemonTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask.release.xcconfig"; sourceTree = "<group>"; };
-		3ECD1F5E9B12C8FB84499245 /* Pods-TestPokemonTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask.debug.xcconfig"; sourceTree = "<group>"; };
-		40676F5318960C5A29E09397 /* Pods_TestPokemonTask_TestPokemonTaskUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTask_TestPokemonTaskUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		48B214CF608F9C029EBAD50F /* Pods-TestPokemonTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTaskTests.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests.release.xcconfig"; sourceTree = "<group>"; };
-		93DE70BBDEF47B046A295847 /* Pods-TestPokemonTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTaskTests.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
-		991E82BD3B175CB71F28A671 /* Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask-TestPokemonTaskUITests/Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A071F19B4416BC5CD74D0DF9 /* Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask-TestPokemonTaskUITests/Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BCA95E69D454AA271EE95BB8 /* Pods_TestPokemonTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B7594F00FCE22B4345EF45 /* Pods_TestPokemonTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F0CD140E6F03F070C8BFB87 /* Pods_TestPokemonTaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1514AD135D5C5B1B963C3442 /* Pods-TestPokemonTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask.debug.xcconfig"; sourceTree = "<group>"; };
+		1F38349B2C2B1D46F628AC7B /* Pods-TestPokemonTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTask.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask.release.xcconfig"; sourceTree = "<group>"; };
+		702FFBECB5482005ABFF1513 /* Pods-TestPokemonTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTaskTests.debug.xcconfig"; path = "Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD6EA24D11B5ABAAFFDD13CB /* Pods-TestPokemonTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestPokemonTaskTests.release.xcconfig"; path = "Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests.release.xcconfig"; sourceTree = "<group>"; };
 		E40EF0A329168E830025C7E0 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
 		E40EF0A52916A3290025C7E0 /* RouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTest.swift; sourceTree = "<group>"; };
 		E413B80229170F5700F02090 /* PokemonListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListPresenterTests.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 		E4F45508290B0DD200E10B4A /* PokemonDescriptionModelRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDescriptionModelRealm.swift; sourceTree = "<group>"; };
 		E4F6A7822915480A0022054E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		E4F6A7842915528A0022054E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		E55CBC55E0F2034023E634AC /* Pods_TestPokemonTaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestPokemonTaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC62ADDBF7A39D6629BB127 /* Pods_TestPokemonTask.framework in Frameworks */,
+				DAEFF1F9196D4B5F41984F68 /* Pods_TestPokemonTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25404872B34A2833F3AE11D6 /* Pods_TestPokemonTaskTests.framework in Frameworks */,
+				C6131C1A7846DEE919BF8EDF /* Pods_TestPokemonTaskTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,22 +118,19 @@
 		1B73D5668B02E7C6751BFF1F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3ECD1F5E9B12C8FB84499245 /* Pods-TestPokemonTask.debug.xcconfig */,
-				0B44CCEA412CE1B98778A6FA /* Pods-TestPokemonTask.release.xcconfig */,
-				991E82BD3B175CB71F28A671 /* Pods-TestPokemonTask-TestPokemonTaskUITests.debug.xcconfig */,
-				A071F19B4416BC5CD74D0DF9 /* Pods-TestPokemonTask-TestPokemonTaskUITests.release.xcconfig */,
-				93DE70BBDEF47B046A295847 /* Pods-TestPokemonTaskTests.debug.xcconfig */,
-				48B214CF608F9C029EBAD50F /* Pods-TestPokemonTaskTests.release.xcconfig */,
+				1514AD135D5C5B1B963C3442 /* Pods-TestPokemonTask.debug.xcconfig */,
+				1F38349B2C2B1D46F628AC7B /* Pods-TestPokemonTask.release.xcconfig */,
+				702FFBECB5482005ABFF1513 /* Pods-TestPokemonTaskTests.debug.xcconfig */,
+				BD6EA24D11B5ABAAFFDD13CB /* Pods-TestPokemonTaskTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		584D56DA66B42709D01799E3 /* Frameworks */ = {
+		42787EC31C72A4A43430CA55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BCA95E69D454AA271EE95BB8 /* Pods_TestPokemonTask.framework */,
-				40676F5318960C5A29E09397 /* Pods_TestPokemonTask_TestPokemonTaskUITests.framework */,
-				E55CBC55E0F2034023E634AC /* Pods_TestPokemonTaskTests.framework */,
+				00B7594F00FCE22B4345EF45 /* Pods_TestPokemonTask.framework */,
+				0F0CD140E6F03F070C8BFB87 /* Pods_TestPokemonTaskTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,7 +188,7 @@
 				E4DF23AF2908033200AE96AC /* TestPokemonTaskTests */,
 				E4DF23942908033100AE96AC /* Products */,
 				1B73D5668B02E7C6751BFF1F /* Pods */,
-				584D56DA66B42709D01799E3 /* Frameworks */,
+				42787EC31C72A4A43430CA55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,12 +312,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4DF23C02908033200AE96AC /* Build configuration list for PBXNativeTarget "TestPokemonTask" */;
 			buildPhases = (
-				728E21223976DD2270E74E37 /* [CP] Check Pods Manifest.lock */,
+				3F341B5560A825220DCEC253 /* [CP] Check Pods Manifest.lock */,
 				E4F6A781291546650022054E /* RSwift */,
 				E4DF238F2908033100AE96AC /* Sources */,
 				E4DF23902908033100AE96AC /* Frameworks */,
 				E4DF23912908033100AE96AC /* Resources */,
-				0D615AD6D24EB326E63977D5 /* [CP] Embed Pods Frameworks */,
+				6ECB7AFDF000A6B529E99C55 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,11 +332,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4DF23C32908033200AE96AC /* Build configuration list for PBXNativeTarget "TestPokemonTaskTests" */;
 			buildPhases = (
-				48A7C8BA3E751854B0295736 /* [CP] Check Pods Manifest.lock */,
+				0D0A0F0445975B157F2F96DA /* [CP] Check Pods Manifest.lock */,
 				E4DF23A82908033200AE96AC /* Sources */,
 				E4DF23A92908033200AE96AC /* Frameworks */,
 				E4DF23AA2908033200AE96AC /* Resources */,
-				76A07334ECDA96C3B8CA069E /* [CP] Embed Pods Frameworks */,
+				F01B2BDB56E894B4E72E366C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,24 +406,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D615AD6D24EB326E63977D5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48A7C8BA3E751854B0295736 /* [CP] Check Pods Manifest.lock */ = {
+		0D0A0F0445975B157F2F96DA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,9 +428,9 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		728E21223976DD2270E74E37 /* [CP] Check Pods Manifest.lock */ = {
+		3F341B5560A825220DCEC253 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
@@ -473,21 +450,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76A07334ECDA96C3B8CA069E /* [CP] Embed Pods Frameworks */ = {
+		6ECB7AFDF000A6B529E99C55 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTask/Pods-TestPokemonTask-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4F6A781291546650022054E /* RSwift */ = {
@@ -504,11 +481,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		F01B2BDB56E894B4E72E366C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestPokemonTaskTests/Pods-TestPokemonTaskTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -694,7 +688,7 @@
 		};
 		E4DF23C12908033200AE96AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3ECD1F5E9B12C8FB84499245 /* Pods-TestPokemonTask.debug.xcconfig */;
+			baseConfigurationReference = 1514AD135D5C5B1B963C3442 /* Pods-TestPokemonTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -723,7 +717,7 @@
 		};
 		E4DF23C22908033200AE96AC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B44CCEA412CE1B98778A6FA /* Pods-TestPokemonTask.release.xcconfig */;
+			baseConfigurationReference = 1F38349B2C2B1D46F628AC7B /* Pods-TestPokemonTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -752,7 +746,7 @@
 		};
 		E4DF23C42908033200AE96AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93DE70BBDEF47B046A295847 /* Pods-TestPokemonTaskTests.debug.xcconfig */;
+			baseConfigurationReference = 702FFBECB5482005ABFF1513 /* Pods-TestPokemonTaskTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -773,7 +767,7 @@
 		};
 		E4DF23C52908033200AE96AC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48B214CF608F9C029EBAD50F /* Pods-TestPokemonTaskTests.release.xcconfig */;
+			baseConfigurationReference = BD6EA24D11B5ABAAFFDD13CB /* Pods-TestPokemonTaskTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
