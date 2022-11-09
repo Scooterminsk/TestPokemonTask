@@ -31,7 +31,7 @@ final class MainViewController: UIViewController {
     private lazy var pokemonListButton: UIButton = {
        let button = UIButton(type: .system)
         button.backgroundColor = R.color.brandColor()
-        button.setTitle("Pokemon list", for: .normal)
+        button.setTitle(R.string.staticStrings.pokemonListButton(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 17)
         button.layer.cornerRadius = 10
@@ -45,7 +45,7 @@ final class MainViewController: UIViewController {
     private lazy var loadFromStorageButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = R.color.brandColor()
-        button.setTitle("Offline mode", for: .normal)
+        button.setTitle(R.string.staticStrings.loadFromStorageButton(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 17)
         button.layer.cornerRadius = 10

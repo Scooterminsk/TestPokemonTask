@@ -46,13 +46,13 @@ final class MainPresenter: MainPresenterProtocol {
     
     @objc func showOfflineDeviceUI(notification: Notification) {
         if networkMonitor.isConnected {
-            Log.info("Connected.")
+            Log.info(R.string.staticStrings.connectedMessage())
             DispatchQueue.main.async {
                 self.view?.onlineMode()
             }
             return
         } else {
-            Log.info("Not connected.")
+            Log.info(R.string.staticStrings.notConnectedMessage())
             DispatchQueue.main.async {
                 self.view?.alertNoNetworkAndCache()
                 self.view?.offlineMode()

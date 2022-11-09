@@ -34,7 +34,7 @@ final class DetailViewController: UIViewController {
         label.textAlignment = .center
         label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
-        label.text = "Pokemon not saved"
+        label.text = R.string.staticStrings.pokemonNotSaved()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,7 +42,7 @@ final class DetailViewController: UIViewController {
     private let greenLineImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.backgroundColor = .clear
-        imageView.image = UIImage(named: "greenLine")
+        imageView.image = R.image.greenLine()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ final class DetailViewController: UIViewController {
     private let hpLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-        label.text = "HP 100/100"
+        label.text = R.string.staticStrings.hpLabelText()
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +62,7 @@ final class DetailViewController: UIViewController {
     private let typesLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 11)
-        label.text = "TYPE"
+        label.text = R.string.staticStrings.typeLabelText()
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +82,7 @@ final class DetailViewController: UIViewController {
     private let weightLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 11)
-        label.text = "WEIGHT"
+        label.text = R.string.staticStrings.weightLabelText()
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ final class DetailViewController: UIViewController {
     private let heightLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 11)
-        label.text = "HEIGHT"
+        label.text = R.string.staticStrings.heightLabelText()
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -207,16 +207,16 @@ extension DetailViewController: DetailViewProtocol {
            let weight = presenter.pokemonDescription?.weight,
            let types = presenter.pokemonDescription?.types {
             // Because default height is in decimetres, default weight is in hectograms, according to API documentation
-            heightDescriptionLabel.text = String(height * 10) + " cm"
-            weightDescriptionLabel.text = String(Double(weight) / 10.0) + " kg"
-            typesDescriptionLabel.text = types.map{$0.type.name.capitalized}.joined(separator: " / ")
+            heightDescriptionLabel.text = String(height * 10) + R.string.staticStrings.cm()
+            weightDescriptionLabel.text = String(Double(weight) / 10.0) + R.string.staticStrings.kg()
+            typesDescriptionLabel.text = types.map{$0.type.name.capitalized}.joined(separator: R.string.staticStrings.slashSeparator())
         }
     }
     
     func pokemonDescriptionSuccessRealm(name: String, height: Int, weight: Int, types: String) {
         nameLabel.text = name.capitalized
-        heightDescriptionLabel.text = String(height * 10) + " cm"
-        weightDescriptionLabel.text = String(Double(weight) / 10.0) + " kg"
+        heightDescriptionLabel.text = String(height * 10) + R.string.staticStrings.cm()
+        weightDescriptionLabel.text = String(Double(weight) / 10.0) + R.string.staticStrings.kg()
         typesDescriptionLabel.text = types
     }
     
@@ -229,7 +229,7 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 20),
+            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 15),
             topImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topImageView.heightAnchor.constraint(equalToConstant: 350),

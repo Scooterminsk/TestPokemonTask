@@ -11,7 +11,7 @@ final class PokemonListViewController: UIViewController {
     
     private let pokemonNamesTableView: UITableView = {
        let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "pokemonNameCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: R.string.staticStrings.reusableCell())
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -28,7 +28,7 @@ final class PokemonListViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
-        title = "Pokemons"
+        title = R.string.staticStrings.controllerTitle()
         
         view.addSubview(pokemonNamesTableView)
     }
@@ -57,7 +57,7 @@ extension PokemonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let pokemons = presenter.pokemons
         if pokemons?.count ?? 0 == 0 {
-            self.pokemonNamesTableView.setEmptyMessage("There are no saved Pokemons")
+            self.pokemonNamesTableView.setEmptyMessage(R.string.staticStrings.emptyTableViewMessage())
         } else {
             self.pokemonNamesTableView.restore()
         }
@@ -65,7 +65,7 @@ extension PokemonListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonNameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.string.staticStrings.reusableCell(), for: indexPath)
         var content = cell.defaultContentConfiguration()
         let pokemon = presenter.pokemons?[indexPath.row]
         cell.accessoryView = UIImageView(image: R.image.pokeball())

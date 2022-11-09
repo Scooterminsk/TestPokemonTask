@@ -22,7 +22,7 @@ final class RouterTest: XCTestCase {
     var router: RouterProtocol!
     var navigationController = MockNavigationController()
     let assembly = AssemblyModuleBuilder()
-    let pokemon = Pokemon(name: "Baz", url: "Bar")
+    let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
     
     override func setUpWithError() throws {
         router = Router(navigationController: navigationController, assemblyBuilder: assembly)

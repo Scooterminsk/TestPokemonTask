@@ -1,0 +1,79 @@
+/* 
+  StaticStrings.strings
+  TestPokemonTask
+
+  Created by Zenya Kirilov on 9.11.22.
+  
+*/
+
+// strings for logger statuses
+"loggerInfo" = "INFO";
+"loggerWarning" = "WARN ⚠️";
+"loggerError" = "ALERT ❌";
+
+// MainViewController titles for elements
+"pokemonListButton" = "Pokemon list";
+"loadFromStorageButton" = "Offline mode";
+
+// MainPresenter showOfflineDeviceUI method static strings
+"connectedMessage" = "Connected.";
+"notConnectedMessage" = "Not connected.";
+
+// PokemonListViewController static strings
+"controllerTitle" = "Pokemons";
+"emptyTableViewMessage" = "There are no saved Pokemons";
+
+// PokemonListViewController reusable cell identificator
+"reusableCell" = "pokemonNameCell";
+
+// DetailViewController static strings
+"pokemonNotSaved" = "Pokemon not saved";
+"hpLabelText" = "HP 100/100";
+"typeLabelText" = "TYPE";
+"weightLabelText" = "WEIGHT";
+"heightLabelText" = "HEIGHT";
+"cm" = " cm";
+"kg" = " kg";
+
+// DetailPresenter static strings
+"pokemonDescriptionSaved" = "Pokemon description SAVED";
+"imageErrorText" = "Error occured while trying to get a pokemon image:";
+
+// NetworkDataFetch static strings
+"urlNoPagination" = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
+"urlPagination" = "https://pokeapi.co/api/v2/pokemon?offset=10&limit=20";
+"jsonError" = "Failed to decode JSON: ";
+"dataFailureError" = "Error received requesting data: ";
+
+// NetworkMonitor static strings
+"connectivityStatusChanged" = "connectivityStatusChanged";
+"networkMonitorQueueName" = "NetworkMonitor";
+
+// UIViewController + Extension, alert static trings
+"alertNoNetworkAndCacheTitle" = "Oh, internet connection status has changed";
+"alertNoNetworkAndCacheMessage" = "You will be moved to the main screen";
+"ok" = "OK";
+
+// DBManager error messages
+"dbManagerAccessError" = "Could not access database: ";
+"dbManagerWriteError" = "Could not write to database: ";
+"dbManagerDeleteError" = "Could not delete from database: ";
+
+// separators
+"slashSeparator" = " / ";
+"comma" = ", ";
+
+// NSError domains
+"urlError" = "UrlError";
+"requestTestError" = "RequestTest";
+"fetchTestError" = "FetchTest";
+"fetchDescriptionTestError" = "FetchDescriptionTest";
+
+// specially for unit-tests
+"expectationIn" = "Expectation in ";
+"requestDataSuccessUrlTest" = "https://pokeapi.co/api/v2/pokemon";
+"baz" = "Baz";
+"bar" = "Bar";
+"foo" = "foo";
+
+

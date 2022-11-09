@@ -52,16 +52,12 @@ class MockDbManager: DBManagerProtocol {
 }
 
 class MockNetworkRequestService: NetworkRequestProtocol {
-    var urlSessionObject: URLSession?
+
     var simpleData: Data?
     var didErrorCatched = false
     
-    required init(urlSessionObject: URLSession) {
-        self.urlSessionObject = urlSessionObject
-    }
-    
-    convenience init(urlSessionObject: URLSession, simpleData: Data) {
-        self.init(urlSessionObject: urlSessionObject)
+    convenience init(simpleData: Data) {
+        self.init()
         self.simpleData = simpleData
     }
     
@@ -69,7 +65,7 @@ class MockNetworkRequestService: NetworkRequestProtocol {
         if let simpleData = simpleData {
             completion(.success(simpleData))
         } else {
-            let error = NSError(domain: "RequestTest", code: 2)
+            let error = NSError(domain: R.string.staticStrings.requestTestError(), code: 2)
             didErrorCatched = true
             completion(.failure(error))
         }
@@ -104,7 +100,7 @@ class MockNetworkFetchService: NetworkDataFetchProtocol {
         if let pokemonModel = pokemonModel {
             response(pokemonModel, nil)
         } else {
-            let error = NSError(domain: "FetchTest", code: 0)
+            let error = NSError(domain: R.string.staticStrings.fetchTestError(), code: 0)
             didErrorCatched = true
             response(nil, error)
         }
@@ -114,7 +110,7 @@ class MockNetworkFetchService: NetworkDataFetchProtocol {
         if let pokemonDescriptionModel = pokemonDescriptionModel {
             response(pokemonDescriptionModel, nil)
         } else {
-            let error = NSError(domain: "FetchDescriptionTest", code: 1)
+            let error = NSError(domain: R.string.staticStrings.fetchDescriptionTestError(), code: 1)
             didDescriptionErrorCatched = true
             response(nil, error)
         }
@@ -140,7 +136,7 @@ final class PokemonListPresenterTests: XCTestCase {
     func testGetPokemons_areTheySuccessfullyObtained_viewSuccessCalled() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorNotConnectedDummy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         
@@ -155,13 +151,14 @@ final class PokemonListPresenterTests: XCTestCase {
     func testSavePokemonsRealm_arePokemonsSaved() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorNotConnectedDummy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         
         presenter = PokemonListPresenter(view: view, networkFetchService: networkFetchService, networkMonitor: networkMonitor, router: router, dbManager: dbManager)
         
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         
         presenter.savePokemonsRealm(pokemons: pokemons, startIndex: 0)
         
@@ -171,8 +168,9 @@ final class PokemonListPresenterTests: XCTestCase {
     func testGetPokemonsFromApi_notEmptyPokemonsModel() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let networkRequestService = MockNetworkRequestService()
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService, pokemons: pokemons)
         let dbManager = MockDbManager()
         
@@ -186,7 +184,7 @@ final class PokemonListPresenterTests: XCTestCase {
     func testGetPokemonsFromApi_errorCatching() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         
@@ -201,8 +199,9 @@ final class PokemonListPresenterTests: XCTestCase {
     func testGetPokemonsPagination_notEmptyPokemonsModel() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let networkRequestService = MockNetworkRequestService()
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService, pokemons: pokemons)
         let dbManager = MockDbManager()
         
@@ -216,7 +215,7 @@ final class PokemonListPresenterTests: XCTestCase {
     func testGetPokemonsPagination_errorCatching() throws {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         

@@ -27,6 +27,7 @@
 		E4A6D1C3290861BA00552568 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1C2290861BA00552568 /* NetworkDataFetch.swift */; };
 		E4A6D1C52908680800552568 /* PokemonListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1C42908680800552568 /* PokemonListPresenter.swift */; };
 		E4A6D1C8290873BE00552568 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6D1C7290873BE00552568 /* AssemblyModuleBuilder.swift */; };
+		E4D54177291BF47900488BA3 /* StaticStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4D54176291BF47900488BA3 /* StaticStrings.strings */; };
 		E4DCB0342909CA0D002E98CE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCB0332909CA0D002E98CE /* MainViewController.swift */; };
 		E4DCB036290A6A70002E98CE /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCB035290A6A70002E98CE /* MainPresenter.swift */; };
 		E4DF23972908033100AE96AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF23962908033100AE96AC /* AppDelegate.swift */; };
@@ -77,6 +78,7 @@
 		E4A6D1C2290861BA00552568 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
 		E4A6D1C42908680800552568 /* PokemonListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListPresenter.swift; sourceTree = "<group>"; };
 		E4A6D1C7290873BE00552568 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
+		E4D54176291BF47900488BA3 /* StaticStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = StaticStrings.strings; sourceTree = "<group>"; };
 		E4DCB0332909CA0D002E98CE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E4DCB035290A6A70002E98CE /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		E4DF23932908033100AE96AC /* TestPokemonTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPokemonTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +303,7 @@
 				E4DF23A22908033200AE96AC /* Assets.xcassets */,
 				E4DF23A42908033200AE96AC /* LaunchScreen.storyboard */,
 				E4DF23A72908033200AE96AC /* Info.plist */,
+				E4D54176291BF47900488BA3 /* StaticStrings.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DF23A62908033200AE96AC /* LaunchScreen.storyboard in Resources */,
+				E4D54177291BF47900488BA3 /* StaticStrings.strings in Resources */,
 				E4DF23A32908033200AE96AC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +485,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
