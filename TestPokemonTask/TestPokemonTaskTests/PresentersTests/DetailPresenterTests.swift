@@ -51,7 +51,7 @@ final class DetailPresenterTests: XCTestCase {
     func testGetPokemonDescription_isItSuccessfullyObtained_viewSuccessCalled() throws {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorNotConnectedDummy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         let pokemon = Pokemon(name: "Baz", url: "Bar")
@@ -74,7 +74,7 @@ final class DetailPresenterTests: XCTestCase {
     func testSavePokemonDescriptionRealm_isPokemonDescriptionSaved() throws {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         let pokemon = Pokemon(name: "Baz", url: "Bar")
@@ -100,7 +100,7 @@ final class DetailPresenterTests: XCTestCase {
     func testGetPokemonDescriptionFromApi_notEmptyPokemonDescriptionModel() {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: "Baz",
                                                               types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: "Bar", url: "Foo"))],
                                                               weight: 1,
@@ -133,7 +133,7 @@ final class DetailPresenterTests: XCTestCase {
     func testGetPokemonDescriptionFromApi_errorCatching() {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         let pokemon = Pokemon(name: "Baz", url: "Bar")
@@ -162,8 +162,7 @@ final class DetailPresenterTests: XCTestCase {
     func testGetPokemonImage_notEmptyData() {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default),
-                                                              simpleData: Data([1, 2, 3, 4, 5]))
+        let networkRequestService = MockNetworkRequestService(simpleData: Data([1, 2, 3, 4, 5]))
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         let pokemon = Pokemon(name: "Baz", url: "Bar")
@@ -191,7 +190,7 @@ final class DetailPresenterTests: XCTestCase {
     func testGetPokemonImage_errorCatching() {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
-        let networkRequestService = MockNetworkRequestService(urlSessionObject: URLSession(configuration: .default))
+        let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
         let pokemon = Pokemon(name: "Baz", url: "Bar")
