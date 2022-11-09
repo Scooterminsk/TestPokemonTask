@@ -18,20 +18,13 @@ protocol DBManagerProtocol {
 
 final class DBManager: DBManagerProtocol {
     
-    private enum ServiceError: Error {
-        case internalErrorConnection
-        case internalErrorCantWrite
-        case internalErrorCantDelete
-    }
-    
     fileprivate var mainRealm: Realm {
+        // it was decided not to create an enum with errors, because the Realm will not see them -> it will never be able to throw them
         do {
             let realm = try Realm(configuration: .defaultConfiguration)
             return realm
-        } catch ServiceError.internalErrorConnection {
-            Log.error("Could not access database", shouldLogContext: true)
         } catch {
-            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error("Could not access database: \(error.localizedDescription)", shouldLogContext: true)
         }
         return self.mainRealm
     }
@@ -41,10 +34,8 @@ final class DBManager: DBManagerProtocol {
             try mainRealm.write {
                 mainRealm.add(pokemonModel, update: .all)
             }
-        } catch ServiceError.internalErrorCantWrite {
-            Log.error("Could not write to database", shouldLogContext: true)
         } catch {
-            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
         }
         
     }
@@ -54,10 +45,8 @@ final class DBManager: DBManagerProtocol {
             try mainRealm.write {
                 mainRealm.add(pokemonDescriptionModel, update: .all)
             }
-        } catch ServiceError.internalErrorCantWrite {
-            Log.error("Could not write to database", shouldLogContext: true)
         } catch {
-            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
     
@@ -80,10 +69,8 @@ final class DBManager: DBManagerProtocol {
                 try mainRealm.write {
                     pokemonDescription.image = imageData
                 }
-            } catch ServiceError.internalErrorCantWrite {
-                Log.error("Could not write to database", shouldLogContext: true)
             } catch {
-                Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+                Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
             }
         }
     }
@@ -94,10 +81,8 @@ final class DBManager: DBManagerProtocol {
                 let allPokemons = mainRealm.objects(PokemonModelRealm.self)
                 mainRealm.delete(allPokemons)
             }
-        } catch ServiceError.internalErrorCantDelete {
-            Log.error("Could not delete from database", shouldLogContext: true)
         } catch {
-            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error("Could not delete from database: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
     
@@ -107,10 +92,8 @@ final class DBManager: DBManagerProtocol {
                 let allPokemonDescriptions = mainRealm.objects(PokemonDescriptionModelRealm.self)
                 mainRealm.delete(allPokemonDescriptions)
             }
-        } catch ServiceError.internalErrorCantDelete {
-            Log.error("Could not delete from database", shouldLogContext: true)
         } catch {
-            Log.error("Unknown error: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error("Could not delete from database: \(error.localizedDescription)", shouldLogContext: true)
         }
     }
 }
