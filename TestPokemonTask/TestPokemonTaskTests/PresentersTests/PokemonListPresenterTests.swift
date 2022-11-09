@@ -65,7 +65,7 @@ class MockNetworkRequestService: NetworkRequestProtocol {
         if let simpleData = simpleData {
             completion(.success(simpleData))
         } else {
-            let error = NSError(domain: "RequestTest", code: 2)
+            let error = NSError(domain: R.string.staticStrings.requestTestError(), code: 2)
             didErrorCatched = true
             completion(.failure(error))
         }
@@ -100,7 +100,7 @@ class MockNetworkFetchService: NetworkDataFetchProtocol {
         if let pokemonModel = pokemonModel {
             response(pokemonModel, nil)
         } else {
-            let error = NSError(domain: "FetchTest", code: 0)
+            let error = NSError(domain: R.string.staticStrings.fetchTestError(), code: 0)
             didErrorCatched = true
             response(nil, error)
         }
@@ -110,7 +110,7 @@ class MockNetworkFetchService: NetworkDataFetchProtocol {
         if let pokemonDescriptionModel = pokemonDescriptionModel {
             response(pokemonDescriptionModel, nil)
         } else {
-            let error = NSError(domain: "FetchDescriptionTest", code: 1)
+            let error = NSError(domain: R.string.staticStrings.fetchDescriptionTestError(), code: 1)
             didDescriptionErrorCatched = true
             response(nil, error)
         }
@@ -157,7 +157,8 @@ final class PokemonListPresenterTests: XCTestCase {
         
         presenter = PokemonListPresenter(view: view, networkFetchService: networkFetchService, networkMonitor: networkMonitor, router: router, dbManager: dbManager)
         
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         
         presenter.savePokemonsRealm(pokemons: pokemons, startIndex: 0)
         
@@ -168,7 +169,8 @@ final class PokemonListPresenterTests: XCTestCase {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
         let networkRequestService = MockNetworkRequestService()
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService, pokemons: pokemons)
         let dbManager = MockDbManager()
         
@@ -198,7 +200,8 @@ final class PokemonListPresenterTests: XCTestCase {
         let view = PokemonListViewSpy()
         let networkMonitor = NetworkMonitorSpy()
         let networkRequestService = MockNetworkRequestService()
-        let pokemons = [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")]
+        let pokemons = [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                        Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())]
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService, pokemons: pokemons)
         let dbManager = MockDbManager()
         

@@ -87,7 +87,7 @@ final class DetailPresenter: DetailPresenterProtocol {
                 DispatchQueue.main.async {
                     self.savePokemonDescriptionRealm(pokemon: pokemonDescriptionModel, id: self.id)
                     self.getPokemonImage(urlString: pokemonDescriptionModel.sprites.other?.home.front_default)
-                    Log.info("Pokemon description SAVED")
+                    Log.info(R.string.staticStrings.pokemonDescriptionSaved())
                     self.view?.pokemonDescriptionSuccess()
                 }
             } else {
@@ -107,7 +107,7 @@ final class DetailPresenter: DetailPresenterProtocol {
                     self.view?.setPokemonImage(imageData: data)
                 }
             case .failure(let error):
-                Log.error("Error occured while trying to get a pokemon image: \(error.localizedDescription)",
+                Log.error(R.string.staticStrings.imageErrorText() + error.localizedDescription,
                           shouldLogContext: true)
             }
         }
@@ -120,7 +120,7 @@ final class DetailPresenter: DetailPresenterProtocol {
         pokemonDescriptionRealm.id = id
         pokemonDescriptionRealm.height = pokemon.height
         pokemonDescriptionRealm.name = pokemon.name
-        pokemonDescriptionRealm.types = pokemon.types.map{$0.type.name.capitalized}.joined(separator: ", ")
+        pokemonDescriptionRealm.types = pokemon.types.map{$0.type.name.capitalized}.joined(separator: R.string.staticStrings.comma())
         pokemonDescriptionRealm.weight = pokemon.weight
         dbManager.save(pokemonDescriptionModel: pokemonDescriptionRealm)
     }

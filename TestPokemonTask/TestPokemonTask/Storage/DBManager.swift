@@ -24,7 +24,7 @@ final class DBManager: DBManagerProtocol {
             let realm = try Realm(configuration: .defaultConfiguration)
             return realm
         } catch {
-            Log.error("Could not access database: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error(R.string.staticStrings.dbManagerAccessError() + error.localizedDescription, shouldLogContext: true)
         }
         return self.mainRealm
     }
@@ -35,7 +35,7 @@ final class DBManager: DBManagerProtocol {
                 mainRealm.add(pokemonModel, update: .all)
             }
         } catch {
-            Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error(R.string.staticStrings.dbManagerWriteError() + error.localizedDescription, shouldLogContext: true)
         }
         
     }
@@ -46,7 +46,7 @@ final class DBManager: DBManagerProtocol {
                 mainRealm.add(pokemonDescriptionModel, update: .all)
             }
         } catch {
-            Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error(R.string.staticStrings.dbManagerWriteError() + error.localizedDescription, shouldLogContext: true)
         }
     }
     
@@ -70,7 +70,7 @@ final class DBManager: DBManagerProtocol {
                     pokemonDescription.image = imageData
                 }
             } catch {
-                Log.error("Could not write to database: \(error.localizedDescription)", shouldLogContext: true)
+                Log.error(R.string.staticStrings.dbManagerWriteError() + error.localizedDescription, shouldLogContext: true)
             }
         }
     }
@@ -82,7 +82,7 @@ final class DBManager: DBManagerProtocol {
                 mainRealm.delete(allPokemons)
             }
         } catch {
-            Log.error("Could not delete from database: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error(R.string.staticStrings.dbManagerDeleteError() + error.localizedDescription, shouldLogContext: true)
         }
     }
     
@@ -93,7 +93,7 @@ final class DBManager: DBManagerProtocol {
                 mainRealm.delete(allPokemonDescriptions)
             }
         } catch {
-            Log.error("Could not delete from database: \(error.localizedDescription)", shouldLogContext: true)
+            Log.error(R.string.staticStrings.dbManagerDeleteError() + error.localizedDescription, shouldLogContext: true)
         }
     }
 }

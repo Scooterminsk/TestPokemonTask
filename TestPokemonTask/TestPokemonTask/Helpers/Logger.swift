@@ -15,9 +15,9 @@ public enum Log {
         
         fileprivate var prefix: String {
             switch self {
-            case .info:    return "INFO"
-            case .warning: return "WARN ⚠️"
-            case .error:   return "ALERT ❌"
+            case .info:    return R.string.staticStrings.loggerInfo()
+            case .warning: return R.string.staticStrings.loggerWarning()
+            case .error:   return R.string.staticStrings.loggerError()
             }
         }
     }

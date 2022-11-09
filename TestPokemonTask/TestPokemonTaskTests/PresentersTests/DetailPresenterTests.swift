@@ -54,7 +54,7 @@ final class DetailPresenterTests: XCTestCase {
         let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -77,7 +77,7 @@ final class DetailPresenterTests: XCTestCase {
         let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -87,8 +87,8 @@ final class DetailPresenterTests: XCTestCase {
                                     dbManager: dbManager,
                                     pokemon: pokemon)
         
-        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: "Baz",
-                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: "Bar", url: "Foo"))],
+        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: R.string.staticStrings.baz(),
+                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo()))],
                                                               weight: 1,
                                                               sprites: PokemonDescriptionModel.Sprites.init(other: .none))
         
@@ -101,14 +101,14 @@ final class DetailPresenterTests: XCTestCase {
         let view = DetailViewSpy()
         let networkMonitor = NetworkMonitorSpy()
         let networkRequestService = MockNetworkRequestService()
-        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: "Baz",
-                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: "Bar", url: "Foo"))],
+        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: R.string.staticStrings.baz(),
+                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo()))],
                                                               weight: 1,
                                                               sprites: PokemonDescriptionModel.Sprites.init(other: .none))
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService, pokemonDescriptionModel: pokemonDescriptionModel)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -136,8 +136,8 @@ final class DetailPresenterTests: XCTestCase {
         let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -165,8 +165,8 @@ final class DetailPresenterTests: XCTestCase {
         let networkRequestService = MockNetworkRequestService(simpleData: Data([1, 2, 3, 4, 5]))
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -176,7 +176,7 @@ final class DetailPresenterTests: XCTestCase {
                                     dbManager: dbManager,
                                     pokemon: pokemon)
         
-        presenter.getPokemonImage(urlString: "Bar")
+        presenter.getPokemonImage(urlString: R.string.staticStrings.bar())
         
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             funcExpectation.fulfill()
@@ -193,7 +193,7 @@ final class DetailPresenterTests: XCTestCase {
         let networkRequestService = MockNetworkRequestService()
         let networkFetchService = MockNetworkFetchService(networkRequestService: networkRequestService)
         let dbManager = MockDbManager()
-        let pokemon = Pokemon(name: "Baz", url: "Bar")
+        let pokemon = Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar())
         
         presenter = DetailPresenter(view: view,
                                     networkRequestService: networkRequestService,
@@ -203,7 +203,7 @@ final class DetailPresenterTests: XCTestCase {
                                     dbManager: dbManager,
                                     pokemon: pokemon)
         
-        presenter.getPokemonImage(urlString: "Bar")
+        presenter.getPokemonImage(urlString: R.string.staticStrings.bar())
         
         XCTAssertTrue(networkRequestService.didErrorCatched)
     }

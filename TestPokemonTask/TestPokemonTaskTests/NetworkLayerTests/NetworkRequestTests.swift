@@ -26,7 +26,7 @@ class URLSessionMockError: URLSession {
     var data: Data?
     var error: Error?
     override func dataTask(with url: URL, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
-        let error = NSError(domain: "RequestTests", code: 4)
+        let error = NSError(domain: R.string.staticStrings.requestTestError(), code: 4)
         completionHandler(nil, nil, error)
         return URLSession.shared.dataTask(with: url)
     }
@@ -42,10 +42,10 @@ final class NetworkRequestTests: XCTestCase {
     func testRequest_success() throws {
         let urlSessionObject = URLSessionMockData.shared
         networkRequestService = NetworkRequest(urlSessionObject: urlSessionObject)
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         var catchedData: Data?
         
-        networkRequestService?.requestData(urlString: "https://pokeapi.co/api/v2/pokemon", completion: { result in
+        networkRequestService?.requestData(urlString: R.string.staticStrings.requestDataSuccessUrlTest(), completion: { result in
             switch result {
             case .success(let data):
                 catchedData = data
@@ -66,10 +66,10 @@ final class NetworkRequestTests: XCTestCase {
     func testRequest_failure() throws {
         let urlSessionObject = URLSessionMockError.shared
         networkRequestService = NetworkRequest(urlSessionObject: urlSessionObject)
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         var cathedError: Error?
         
-        networkRequestService?.requestData(urlString: "Baz", completion: { result in
+        networkRequestService?.requestData(urlString: R.string.staticStrings.baz(), completion: { result in
             switch result {
             case .success(_):
                 return

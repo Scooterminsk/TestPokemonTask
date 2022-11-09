@@ -15,13 +15,13 @@ protocol NetworkMonitorProtocol {
 }
 
 extension Notification.Name {
-    static let connectivityStatus = Notification.Name(rawValue: "connectivityStatusChanged")
+    static let connectivityStatus = Notification.Name(rawValue: R.string.staticStrings.connectivityStatusChanged())
 }
 
 final class NetworkMonitor: NetworkMonitorProtocol {
     
     static let shared = NetworkMonitor()
-    private let queue = DispatchQueue(label: "NetworkMonitor")
+    private let queue = DispatchQueue(label: R.string.staticStrings.networkMonitorQueueName())
     private let monitor: NWPathMonitor
     
     private(set) var isConnected = false

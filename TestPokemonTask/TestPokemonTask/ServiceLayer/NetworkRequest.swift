@@ -21,7 +21,7 @@ final class NetworkRequest: NetworkRequestProtocol {
     func requestData(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
         guard let url = URL(string: urlString) else {
-            let error = NSError(domain: "UrlError", code: 5)
+            let error = NSError(domain: R.string.staticStrings.urlError(), code: 5)
             completion(.failure(error))
             return
         }

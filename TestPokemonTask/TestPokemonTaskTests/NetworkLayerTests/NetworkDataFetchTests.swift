@@ -40,7 +40,7 @@ class MockNetworkRequest: NetworkRequestProtocol {
         if let simpleData = simpleData {
             completion(.success(simpleData))
         } else {
-            let error = NSError(domain: "RequestTest", code: 2)
+            let error = NSError(domain: R.string.staticStrings.requestTestError(), code: 2)
             didErrorCatched = true
             completion(.failure(error))
         }
@@ -56,9 +56,10 @@ final class NetworkDataFetchTests: XCTestCase {
     }
 
     func testFetchPokemons_success() throws {
-        let pokemonModel = PokemonModel(results: [Pokemon(name: "Baz", url: "Bar"), Pokemon(name: "Bar", url: "Foo")])
+        let pokemonModel = PokemonModel(results: [Pokemon(name: R.string.staticStrings.baz(), url: R.string.staticStrings.bar()),
+                                                  Pokemon(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo())])
         let networkRequestService = MockNetworkRequest(pokemonModel: pokemonModel)
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedPokemonModel: PokemonModel?
 
@@ -85,7 +86,7 @@ final class NetworkDataFetchTests: XCTestCase {
     
     func testFetchPokemons_jsonError() throws {
         let networkRequestService = MockNetworkRequest(simpleData: Data([1, 2, 3, 4, 5]))
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedJsonError: Error?
 
@@ -112,7 +113,7 @@ final class NetworkDataFetchTests: XCTestCase {
     
     func testFetchPokemons_errorFailure() throws {
         let networkRequestService = MockNetworkRequest()
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedError: Error?
 
@@ -138,18 +139,18 @@ final class NetworkDataFetchTests: XCTestCase {
     }
     
     func testFetchPokemonDescription_success() throws {
-        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: "Baz",
-                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: "Bar", url: "Foo"))],
+        let pokemonDescriptionModel = PokemonDescriptionModel(height: 1, name: R.string.staticStrings.baz(),
+                                                              types: [PokemonDescriptionModel.TypeElement.init(slot: 1, type: PokemonDescriptionModel.Species.init(name: R.string.staticStrings.bar(), url: R.string.staticStrings.foo()))],
                                                               weight: 1,
                                                               sprites: PokemonDescriptionModel.Sprites.init(other: .none))
         let networkRequestService = MockNetworkRequest(pokemonDescriptionModel: pokemonDescriptionModel)
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedPokemonDescriptionModel: PokemonDescriptionModel?
 
         networkDataFetch = NetworkDataFetch(networkRequestService: networkRequestService)
         
-        networkDataFetch.fetchPokemonDescription(urlString: "Bar") { pokemonDescriptionModel, error in
+        networkDataFetch.fetchPokemonDescription(urlString: R.string.staticStrings.bar()) { pokemonDescriptionModel, error in
             if error == nil {
                 catchedPokemonDescriptionModel = pokemonDescriptionModel
             } else {
@@ -170,13 +171,13 @@ final class NetworkDataFetchTests: XCTestCase {
     
     func testFetchPokemonDescription_jsonError() throws {
         let networkRequestService = MockNetworkRequest(simpleData: Data([1, 2, 3, 4, 5]))
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedJsonError: Error?
 
         networkDataFetch = NetworkDataFetch(networkRequestService: networkRequestService)
         
-        networkDataFetch.fetchPokemonDescription(urlString: "Bar") { pokemonDescriptionModel, error in
+        networkDataFetch.fetchPokemonDescription(urlString: R.string.staticStrings.bar()) { pokemonDescriptionModel, error in
             if error == nil {
                 return
             } else {
@@ -197,13 +198,13 @@ final class NetworkDataFetchTests: XCTestCase {
     
     func testFetchPokemonDescription_errorFailure() throws {
         let networkRequestService = MockNetworkRequest()
-        let funcExpectation = expectation(description: "Expectation in" + #function)
+        let funcExpectation = expectation(description: R.string.staticStrings.expectationIn() + #function)
         
         var catchedError: Error?
 
         networkDataFetch = NetworkDataFetch(networkRequestService: networkRequestService)
         
-        networkDataFetch.fetchPokemonDescription(urlString: "Bar") { pokemonDescriptionModel, error in
+        networkDataFetch.fetchPokemonDescription(urlString: R.string.staticStrings.bar()) { pokemonDescriptionModel, error in
             if error == nil {
                 return
             } else {
