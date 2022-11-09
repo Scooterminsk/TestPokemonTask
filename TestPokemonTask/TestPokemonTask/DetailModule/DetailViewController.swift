@@ -229,7 +229,7 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 20),
+            topImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height / 15),
             topImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topImageView.heightAnchor.constraint(equalToConstant: 350),
